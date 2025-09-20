@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Struktur Organisasi - Desa Candigugur</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-color: #627188;
+      --primary-light: #758499;
+      --primary-dark: #52637a;
+      --accent-color: #8b9cb5;
+      --background-gradient: linear-gradient(135deg, #627188 0%, #758499 100%);
+      --card-gradient: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+      --shadow-light: 0 8px 25px rgba(98, 113, 136, 0.15);
+      --shadow-hover: 0 15px 35px rgba(98, 113, 136, 0.25);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--background-gradient);
+      color: #334155;
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Animated background particles */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="particles" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="white" opacity="0.1"><animate attributeName="opacity" values="0.1;0.3;0.1" dur="3s" repeatCount="indefinite"/></circle><circle cx="18" cy="18" r="1" fill="white" opacity="0.1"><animate attributeName="opacity" values="0.1;0.3;0.1" dur="4s" repeatCount="indefinite"/></circle><circle cx="10" cy="15" r="1" fill="white" opacity="0.1"><animate attributeName="opacity" values="0.1;0.3;0.1" dur="2s" repeatCount="indefinite"/></circle></pattern></defs><rect width="100" height="100" fill="url(%23particles)"/></svg>') repeat;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Keep original navbar styling */
+    .navbar {
+      padding: 1rem 2rem;
+      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.95) !important;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 0.5rem 2rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    .navbar-brand img {
+      height: 48px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled .navbar-brand img {
+      height: 40px;
+    }
+
+    .brand-text {
+      margin-left: 10px;
+    }
+
+    .brand-text strong {
+      font-size: 1.2rem;
+      color: #374151;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .brand-text small {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .navbar-toggler {
+      border: none;
+      color: #374151;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2855, 65, 81, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .nav-link {
+      color: #374151 !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      padding: 8px 16px !important;
+      border-radius: 8px;
+    }
+
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #627188, #758499);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      width: 100%;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #627188 !important;
+      transform: translateY(-1px);
+      background: rgba(98, 113, 136, 0.1);
+    }
+
+    .dropdown-menu {
+      background: white;
+      border: none;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      padding: 8px 0;
+    }
+
+    .dropdown-item {
+      color: #475569;
+      font-weight: 500;
+      padding: 8px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item.active {
+      background: var(--background-gradient) !important;
+      color: white !important;
+    }
+
+    .dropdown-item:hover {
+      background: #f1f5f9;
+      color: #627188;
+      transform: translateX(5px);
+    }
+
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(98, 113, 136, 0.1);
+      z-index: 1000;
+    }
+
+    .scroll-progress {
+      height: 100%;
+      background: var(--background-gradient);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .hero-section {
+      background: var(--background-gradient),
+                  linear-gradient(45deg, #627188, #758499);
+      padding: 140px 0 90px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: float 20s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      100% { transform: translate(-50px, -50px) rotate(360deg); }
+    }
+
+    .hero-title {
+      font-size: 3.2rem;
+      font-weight: 700;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 1;
+      animation: slideInUp 1s ease-out;
+      margin-bottom: 15px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+      position: relative;
+      z-index: 1;
+      animation: slideInUp 1s ease-out 0.2s both;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .content-section {
+      padding: 80px 0;
+      background: rgba(248, 250, 252, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .intro-card {
+      background: var(--card-gradient);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 50px;
+      box-shadow: var(--shadow-light);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin-bottom: 50px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .intro-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--background-gradient);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .intro-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .intro-card h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: var(--background-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .intro-card p {
+      font-size: 1.05rem;
+      color: #475569;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* Enhanced Structure Chart */
+    .structure-container {
+      background: var(--card-gradient);
+      backdrop-filter: blur(20px);
+      border-radius: 25px;
+      padding: 60px 40px;
+      box-shadow: var(--shadow-light);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin: 50px 0;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+
+    .structure-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(135deg, #8b9cb5 0%, #a5b4c7 100%);
+      border-radius: 25px 25px 0 0;
+    }
+
+    .structure-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(98, 113, 136, 0.2);
+    }
+
+    .chart-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: var(--background-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 40px;
+      text-align: center;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .org-chart {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+      padding: 40px;
+      border-radius: 20px;
+      margin: 30px 0;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(98, 113, 136, 0.1);
+    }
+
+    .org-chart::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(98, 113, 136, 0.03) 1px, transparent 1px);
+      background-size: 30px 30px;
+      animation: float 15s linear infinite reverse;
+    }
+
+    .org-level {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 30px;
+    }
+
+    .position-box {
+      background: var(--background-gradient);
+      color: white;
+      padding: 25px 35px;
+      border-radius: 15px;
+      text-align: center;
+      min-width: 240px;
+      max-width: 280px;
+      box-shadow: 0 10px 30px rgba(98, 113, 136, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: fadeInUp 0.6s ease-out;
+      animation-fill-mode: both;
+      margin: 10px;
+    }
+
+    .position-box:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(98, 113, 136, 0.4);
+    }
+
+    .position-box.bpd {
+      border: 3px dashed rgba(255, 255, 255, 0.6);
+      position: relative;
+    }
+
+    .position-box.bpd::after {
+      content: 'Koordinatif';
+      position: absolute;
+      top: -12px;
+      right: -15px;
+      background: rgba(139, 156, 181, 0.9);
+      color: white;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .position-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .position-name {
+      font-size: 1.15rem;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .position-empty {
+      font-style: italic;
+      opacity: 0.8;
+    }
+
+    .connecting-line {
+      width: 4px;
+      height: 30px;
+      background: var(--background-gradient);
+      margin: 20px auto;
+      border-radius: 2px;
+      position: relative;
+      animation: growLine 0.8s ease-out;
+    }
+
+    @keyframes growLine {
+      from {
+        height: 0;
+        opacity: 0;
+      }
+      to {
+        height: 30px;
+        opacity: 1;
+      }
+    }
+
+    .level-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* Information Cards */
+    .info-section {
+      margin: 60px 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .info-card {
+      background: var(--card-gradient);
+      backdrop-filter: blur(20px);
+      border-radius: 18px;
+      padding: 35px;
+      box-shadow: var(--shadow-light);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .info-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--background-gradient);
+      border-radius: 18px 18px 0 0;
+    }
+
+    .info-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .info-card h4 {
+      background: var(--background-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+    }
+
+    .info-card p, .info-card ul {
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    .info-card ul {
+      margin-left: 20px;
+    }
+
+    .info-card ul li {
+      margin-bottom: 8px;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(139, 156, 181, 0.1), rgba(165, 180, 199, 0.1));
+      border: 2px solid rgba(139, 156, 181, 0.3);
+      border-radius: 16px;
+      padding: 30px;
+      margin: 30px 0;
+      position: relative;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 5px rgba(139, 156, 181, 0.3);
+      }
+      to {
+        box-shadow: 0 0 20px rgba(139, 156, 181, 0.5);
+      }
+    }
+
+    .highlight-box::before {
+      content: '\f05a';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-5px);
+      }
+      60% {
+        transform: translateY(-3px);
+      }
+    }
+
+    .highlight-box p {
+      margin-left: 50px;
+      color: #475569;
+      font-weight: 500;
+    }
+
+    .contact-section {
+      background: var(--card-gradient);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 50px;
+      box-shadow: var(--shadow-light);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin: 50px 0;
+      position: relative;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(135deg, #8b9cb5, #a5b4c7);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .download-section {
+      background: linear-gradient(145deg, rgba(98, 113, 136, 0.1), rgba(117, 132, 153, 0.1));
+      backdrop-filter: blur(10px);
+      padding: 50px;
+      border-radius: 20px;
+      text-align: center;
+      margin: 50px 0;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .download-btn {
+      background: var(--background-gradient);
+      color: white;
+      padding: 18px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-block;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(98, 113, 136, 0.3);
+    }
+
+    .download-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .download-btn:hover::before {
+      left: 100%;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 50px rgba(98, 113, 136, 0.4);
+      color: white;
+    }
+
+    /* Animation delays for staggered effect */
+    .position-box:nth-child(1) { animation-delay: 0.1s; }
+    .position-box:nth-child(2) { animation-delay: 0.2s; }
+    .position-box:nth-child(3) { animation-delay: 0.3s; }
+    .position-box:nth-child(4) { animation-delay: 0.4s; }
+    .position-box:nth-child(5) { animation-delay: 0.5s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Enhanced mobile responsiveness */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .intro-card {
+        padding: 35px 25px;
+      }
+
+      .structure-container {
+        padding: 40px 25px;
+      }
+
+      .hero-section {
+        padding: 120px 0 80px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .level-container {
+        gap: 20px;
+      }
+
+      .position-box {
+        min-width: 200px;
+        padding: 20px 25px;
+        margin: 8px;
+      }
+
+      .chart-title {
+        font-size: 1.8rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-title {
+        font-size: 2.2rem;
+      }
+
+      .intro-card {
+        padding: 30px 20px;
+      }
+
+      .structure-container {
+        padding: 30px 20px;
+      }
+
+      .position-box {
+        min-width: 180px;
+        padding: 18px 20px;
+        margin: 6px;
+      }
+
+      .position-title {
+        font-size: 0.9rem;
+      }
+
+      .position-name {
+        font-size: 1.05rem;
+      }
+
+      .info-card {
+        padding: 25px 20px;
+      }
+    }
+
+    /* Loading animation */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--background-gradient);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+     .footer {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: #e2e8f0;
+  padding: 80px 0 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerPattern" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="30" cy="30" r="1" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23footerPattern)"/></svg>');
+  pointer-events: none;
+}
+
+.footer-logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
+}
+
+.footer-title {
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.footer-subtitle {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.footer-description {
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+}
+
+.footer-section-title {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(135deg, #627188 0%, #10b981 100%);
+  border-radius: 2px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.footer-links a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #627188 0%, #10b981 100%);
+  transform: translateY(-50%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+  transform: translateX(10px);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.footer-links a:hover::before {
+  width: 20px;
+}
+
+.footer-links a[aria-current="page"] {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.footer-contact {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.footer-contact p {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-contact i {
+  color: #10b981;
+  margin-right: 15px;
+  margin-top: 2px;
+  font-size: 1.1rem;
+  min-width: 20px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.social-link {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, rgba(98, 113, 136, 0.8) 0%, rgba(16, 185, 129, 0.8) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s ease;
+}
+
+.social-link:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.social-link:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.social-link i {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+  margin: 50px 0 30px;
+}
+
+.footer-bottom {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  padding-top: 20px;
+}
+
+.footer-bottom p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-bottom .fas.fa-heart {
+  color: #ef4444;
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 50%, 100% {
+    transform: scale(1);
+  }
+  25%, 75% {
+    transform: scale(1.1);
+  }
+}
+
+/* Newsletter Section */
+.footer-newsletter {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.footer-newsletter h6 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.footer-newsletter p {
+  color: #cbd5e1;
+  margin-bottom: 25px;
+}
+
+.newsletter-form {
+  display: flex;
+  max-width: 400px;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 12px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 0.9rem;
+  backdrop-filter: blur(5px);
+}
+
+.newsletter-input::placeholder {
+  color: #94a3b8;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.newsletter-btn {
+  background: linear-gradient(135deg, #10b981 0%, #627188 100%);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.newsletter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+}
+  </style>
+</head>
+<body>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+</div>
+
+<div class="scroll-indicator">
+  <div class="scroll-progress" id="scrollProgress"></div>
+</div>
+
+<!-- Navbar (unchanged) -->
+<nav class="navbar navbar-expand-lg shadow-sm sticky-top" id="mainNavbar">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="image/logo batang.png" alt="Logo" />
+      <div class="brand-text">
+        <strong>Desa Candigugur</strong><br />
+        <small>Kabupaten Batang</small>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+      <ul class="navbar-nav gap-2">
+        <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Profil Desa</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="tentang.html">Tentang Kami</a></li>
+            <li><a class="dropdown-item" href="visi.html">Visi & Misi</a></li>
+            <li><a class="dropdown-item" href="sejarah.html">Sejarah Desa</a></li>
+            <li><a class="dropdown-item" href="geografis.html">Geografis Desa</a></li>
+            <li><a class="dropdown-item" href="demografis.html">Demografis Desa</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pemerintahan</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item active" href="struktur.html">Struktur</a></li>
+            <li><a class="dropdown-item" href="perangkat.html">Perangkat Desa</a></li>
+            <li><a class="dropdown-item" href="lembaga.html">Lembaga Desa</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="layanan.html">Layanan</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Informasi</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="berita.html">Berita</a></li>
+            <li><a class="dropdown-item" href="pengumuman.html">Pengumuman</a></li>
+            <li><a class="dropdown-item" href="agenda.html">Agenda Kegiatan</a></li>
+            <li><a class="dropdown-item" href="galeri.html">Galeri</a></li>
+            <li><a class="dropdown-item" href="apbdesa.html">APBDesa</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="potensi.html">Potensi Desa</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="hero-section">
+  <div class="container">
+    <h1 class="hero-title">Struktur Organisasi</h1>
+    <p class="hero-subtitle">Struktur Pemerintahan Desa Candigugur</p>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    
+    <!-- Introduction Card -->
+    <div class="intro-card">
+      <h2><i class="fas fa-sitemap me-3"></i>Struktur Pemerintahan Desa</h2>
+      <p>
+        Struktur Organisasi Pemerintahan Desa Candigugur disusun berdasarkan 
+        Undang-Undang Nomor 6 Tahun 2014 tentang Desa dan Peraturan Pemerintah Nomor 43 Tahun 2014 
+        tentang Peraturan Pelaksanaan Undang-Undang Nomor 6 Tahun 2014 tentang Desa.
+      </p>
+      <p>
+        Struktur organisasi ini menggambarkan hierarki kepemimpinan dan pembagian tugas dalam 
+        penyelenggaraan pemerintahan desa untuk memberikan pelayanan terbaik kepada masyarakat 
+        Desa Candigugur.
+      </p>
+      
+      <div class="highlight-box">
+        <p>Struktur organisasi ini berlaku sesuai dengan Surat Keputusan Kepala Desa dan 
+        dapat mengalami perubahan sesuai dengan kebutuhan dan perkembangan desa.</p>
+      </div>
+    </div>
+
+    <!-- Enhanced Struktur Organisasi Chart -->
+    <div class="structure-container">
+      <h3 class="chart-title"><i class="fas fa-chart-organization me-3"></i>Bagan Struktur Organisasi</h3>
+      <div class="org-chart">
+        
+        <!-- Level 1: BPD and Kepala Desa -->
+        <div class="org-level">
+          <div class="level-container">
+            <div class="position-box bpd">
+              <div class="position-title">KETUA BPD</div>
+              <div class="position-name">MUNIRON</div>
+            </div>
+            <div class="position-box">
+              <div class="position-title">KEPALA DESA</div>
+              <div class="position-name">MUZAMIL.NM</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connecting Line -->
+        <div class="connecting-line"></div>
+
+        <!-- Level 2: Sekretaris Desa -->
+        <div class="org-level">
+          <div class="level-container">
+            <div class="position-box">
+              <div class="position-title">SEKRETARIS DESA</div>
+              <div class="position-name">AHMAD SYAFIQ</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connecting Line -->
+        <div class="connecting-line"></div>
+
+        <!-- Level 3: KAUR -->
+        <div class="org-level">
+          <div class="level-container">
+            <div class="position-box">
+              <div class="position-title">KAUR TU / UMUM</div>
+              <div class="position-name">M.KHODIK</div>
+            </div>
+            <div class="position-box">
+              <div class="position-title">KAUR KEUANGAN</div>
+              <div class="position-name">NUR KHOLIS</div>
+            </div>
+            <div class="position-box">
+              <div class="position-title">KAUR PERENCANAAN</div>
+              <div class="position-name">SULARTO</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connecting Line -->
+        <div class="connecting-line"></div>
+
+        <!-- Level 4: KASI -->
+        <div class="org-level">
+          <div class="level-container">
+            <div class="position-box">
+              <div class="position-title">KASI PEMERINTAHAN</div>
+              <div class="position-name">SUMANAH</div>
+            </div>
+            <div class="position-box">
+              <div class="position-title">KASI KESEJAHTERAAN</div>
+              <div class="position-name">ADI KURNIAWAN</div>
+            </div>
+            <div class="position-box">
+              <div class="position-title">KASI PELAYANAN</div>
+              <div class="position-name">AKHMD ROKHIMIN</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connecting Line -->
+        <div class="connecting-line"></div>
+
+        <!-- Level 5: KADUS -->
+        <div class="org-level">
+          <div class="level-container">
+            <div class="position-box">
+              <div class="position-title">KADUS CANDRAWANG</div>
+              <div class="position-name">HANA ASSIDIKI,S.Pd</div>
+            </div>
+            <div class="position-box">
+              <div class="position-title">KADUS KLAWEN</div>
+              <div class="position-name position-empty">(Kosong)</div>
+            </div>
+            <div class="position-box">
+              <div class="position-title">KADUS DONOWODO</div>
+              <div class="position-name">AGUS APRIANTO</div>
+            </div>
+            <div class="position-box">
+              <div class="position-title">KADUS CANDIGUGUR</div>
+              <div class="position-name">KUMPUL RUDIDYO</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Note for BPD connection -->
+        <div style="margin-top: 40px; text-align: center; font-size: 1rem; color: var(--primary-color); font-weight: 600;">
+          <i class="fas fa-info-circle me-2"></i>Garis putus-putus menunjukkan hubungan koordinatif antara BPD dan Kepala Desa
+        </div>
+      </div>
+    </div>
+
+    <!-- Information Section -->
+    <div class="info-section">
+      <div class="info-grid">
+        
+        <!-- Kepala Desa -->
+        <div class="info-card">
+          <h4><i class="fas fa-user-tie me-2"></i>Kepala Desa</h4>
+          <p><strong>Muzamil.NM</strong> - Pimpinan penyelenggaraan pemerintahan desa yang bertanggung jawab atas jalannya pemerintahan, pembangunan, dan pemberdayaan masyarakat desa.</p>
+        </div>
+
+        <!-- Ketua BPD -->
+        <div class="info-card">
+          <h4><i class="fas fa-balance-scale me-2"></i>Ketua BPD</h4>
+          <p><strong>Muniron</strong> - Pimpinan Badan Permusyawaratan Desa yang berfungsi sebagai lembaga legislatif di tingkat desa dan melakukan pengawasan terhadap penyelenggaraan pemerintahan desa.</p>
+        </div>
+
+        <!-- Sekretaris Desa -->
+        <div class="info-card">
+          <h4><i class="fas fa-file-alt me-2"></i>Sekretaris Desa</h4>
+          <p><strong>Ahmad Syafiq</strong> - Membantu Kepala Desa dalam bidang administrasi pemerintahan, menyiapkan bahan perumusan kebijakan, dan mengkoordinasikan pelaksanaan tugas perangkat desa.</p>
+        </div>
+
+        <!-- KAUR -->
+        <div class="info-card">
+          <h4><i class="fas fa-briefcase me-2"></i>Kepala Urusan (KAUR)</h4>
+          <ul>
+            <li><strong>KAUR TU/Umum (M.Khodik):</strong> Mengelola administrasi umum, surat menyurat, dan tata usaha desa</li>
+            <li><strong>KAUR Keuangan (Nur Kholis):</strong> Mengelola keuangan desa, APBDesa, dan pelaporan keuangan</li>
+            <li><strong>KAUR Perencanaan (Sularto):</strong> Menyusun perencanaan pembangunan dan program desa</li>
+          </ul>
+        </div>
+
+        <!-- KASI -->
+        <div class="info-card">
+          <h4><i class="fas fa-tasks me-2"></i>Kepala Seksi (KASI)</h4>
+          <ul>
+            <li><strong>KASI Pemerintahan (Sumanah):</strong> Menangani bidang pemerintahan, keamanan, dan ketertiban</li>
+            <li><strong>KASI Kesejahteraan (Adi Kurniawan):</strong> Menangani bidang kesejahteraan sosial dan pemberdayaan masyarakat</li>
+            <li><strong>KASI Pelayanan (Akhmd Rokhimin):</strong> Memberikan pelayanan administrasi kepada masyarakat</li>
+          </ul>
+        </div>
+
+        <!-- KADUS -->
+        <div class="info-card">
+          <h4><i class="fas fa-map-marker-alt me-2"></i>Kepala Dusun (KADUS)</h4>
+          <ul>
+            <li><strong>KADUS Candrawang (Hana Assidiki,S.Pd):</strong> Mengelola wilayah Dusun Candrawang</li>
+            <li><strong>KADUS Klawen:</strong> Posisi sedang kosong, akan diisi sesuai ketentuan</li>
+            <li><strong>KADUS Donowodo (Agus Aprianto):</strong> Mengelola wilayah Dusun Donowodo</li>
+            <li><strong>KADUS Candigugur (Kumpul Rudidyo):</strong> Mengelola wilayah Dusun Candigugur</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tugas dan Fungsi -->
+    <div class="info-card">
+      <h4><i class="fas fa-clipboard-list me-2"></i>Tugas dan Fungsi Utama</h4>
+      
+      <div style="margin-top: 25px;">
+        <h5 style="color: var(--primary-color); font-weight: 600; margin-bottom: 15px;">Tugas Pokok Pemerintah Desa:</h5>
+        <ol style="color: #475569; line-height: 1.7;">
+          <li>Menyelenggarakan pemerintahan desa</li>
+          <li>Melaksanakan pembangunan desa</li>
+          <li>Melakukan pembinaan kemasyarakatan desa</li>
+          <li>Melakukan pemberdayaan masyarakat desa</li>
+        </ol>
+      </div>
+
+      <div style="margin-top: 30px;">
+        <h5 style="color: var(--primary-color); font-weight: 600; margin-bottom: 15px;">Kewenangan Desa:</h5>
+        <ul style="color: #475569; line-height: 1.7;">
+          <li>Kewenangan berdasarkan hak asal usul</li>
+          <li>Kewenangan lokal berskala desa</li>
+          <li>Kewenangan yang ditugaskan oleh Pemerintah, Pemerintah Daerah Provinsi, atau Pemerintah Daerah Kabupaten/Kota</li>
+          <li>Kewenangan lain yang ditugaskan oleh Pemerintah, Pemerintah Daerah Provinsi, atau Pemerintah Daerah Kabupaten/Kota</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="contact-section">
+      <h4 style="text-align: center; margin-bottom: 35px; background: var(--background-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; font-size: 1.6rem;">
+        <i class="fas fa-phone me-2"></i>Informasi Kontak
+      </h4>
+      <p style="text-align: center; color: #475569; margin-bottom: 35px;">
+        Untuk informasi lebih lanjut mengenai struktur organisasi atau pelayanan pemerintahan desa, 
+        masyarakat dapat menghubungi:
+      </p>
+      
+      <div class="contact-grid">
+        <div>
+          <h5 style="color: var(--primary-color); font-weight: 600; margin-bottom: 20px;">
+            <i class="fas fa-building me-2"></i>Kantor Desa Candigugur
+          </h5>
+          <p style="margin: 0; color: #475569; line-height: 1.8;">
+            <i class="fas fa-map-marker-alt me-2" style="color: var(--primary-color);"></i>Alamat: Desa Candigugur, Kec. Kandeman, Kab. Batang<br>
+            <i class="fas fa-clock me-2" style="color: var(--primary-color);"></i>Jam Kerja: Senin - Jumat, 08:00 - 15:00 WIB<br>
+            <i class="fas fa-calendar me-2" style="color: var(--primary-color);"></i>Hari Pelayanan: Senin - Kamis (Jumat khusus urusan internal)
+          </p>
+        </div>
+        <div>
+          <h5 style="color: var(--primary-color); font-weight: 600; margin-bottom: 20px;">
+            <i class="fas fa-envelope me-2"></i>Kontak
+          </h5>
+          <p style="margin: 0; color: #475569; line-height: 1.8;">
+            <i class="fas fa-phone me-2" style="color: var(--primary-color);"></i>Telepon: (0285) XXX-XXX<br>
+            <i class="fas fa-envelope me-2" style="color: var(--primary-color);"></i>Email: desacandigugur@gmail.com<br>
+            <i class="fas fa-globe me-2" style="color: var(--primary-color);"></i>Website: www.candigugur-batang.desa.id
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Footer -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="d-flex align-items-center mb-3">
+          <img src="image/logo batang.png" alt="Logo Kabupaten Batang" class="footer-logo" loading="lazy">
+          <div>
+            <h5 class="footer-title">Desa Candigugur</h5>
+            <small class="footer-subtitle">Kabupaten Batang</small>
+          </div>
+        </div>
+        <p class="footer-description">
+          Desa Candigugur adalah desa yang terletak di Kecamatan Bawang, Kabupaten Batang, 
+          Jawa Tengah dengan potensi alam dan budaya yang kaya.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook Desa Candigugur">
+            <i class="fab fa-facebook" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram Desa Candigugur">
+            <i class="fab fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube Desa Candigugur">
+            <i class="fab fa-youtube" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="WhatsApp Desa Candigugur">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h6 class="footer-section-title">Profil Desa</h6>
+        <ul class="footer-links">
+          <li><a href="tentang.html">Tentang Kami</a></li>
+          <li><a href="visi.html">Visi & Misi</a></li>
+          <li><a href="sejarah.html">Sejarah Desa</a></li>
+          <li><a href="geografis.html">Geografis</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h6 class="footer-section-title">Informasi</h6>
+        <ul class="footer-links">
+          <li><a href="berita.html">Berita</a></li>
+          <li><a href="pengumuman.html">Pengumuman</a></li>
+          <li><a href="agenda.html">Agenda Kegiatan</a></li>
+          <li><a href="galeri.html">Galeri</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-4 mb-4">
+        <h6 class="footer-section-title">Kontak Kami</h6>
+        <div class="footer-contact">
+          <p>
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            <span>
+              Desa Candigugur, Kecamatan Bawang<br>
+              Kabupaten Batang, Jawa Tengah
+            </span>
+          </p>
+          <p>
+            <i class="fas fa-phone" aria-hidden="true"></i>
+            <span>+62 285 123 456</span>
+          </p>
+          <p>
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <span>candigugur@batangkab.go.id</span>
+          </p>
+          <p>
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span>Senin - Jumat: 07:00 - 16:00 WIB</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <hr class="footer-divider">
+    
+    <div class="footer-bottom row align-items-center">
+      <div class="col-md-6">
+        <p>&copy; 2025 Desa Candigugur. All rights reserved.</p>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <p>
+          Designed with <i class="fas fa-heart" style="color: #ef4444;" aria-hidden="true"></i> for Candigugur
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Loading animation
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.style.opacity = '0';
+    setTimeout(() => {
+      loadingOverlay.style.display = 'none';
+    }, 500);
+  }, 1000);
+});
+
+// Scroll progress bar
+window.addEventListener('scroll', () => {
+  const scrolled = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('scrollProgress').style.width = scrolled + '%';
+  
+  // Navbar styling
+  const navbar = document.getElementById('mainNavbar');
+  if (navbar && window.scrollY > 100) {
+    navbar.classList.add('scrolled');
+  } else if (navbar) {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+// Set active nav item
+const currentPage = window.location.pathname.split("/").pop();
+const navLinks = document.querySelectorAll(".nav-link, .dropdown-item");
+navLinks.forEach((link) => {
+  const linkPage = link.getAttribute("href");
+  if (linkPage === currentPage) {
+    link.classList.add("active");
+  }
+});
+
+// Enhanced scroll animations with intersection observer
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      
+      // Add special animation for position boxes
+      if (entry.target.classList.contains('position-box')) {
+        entry.target.style.animationPlayState = 'running';
+      }
+    }
+  });
+}, observerOptions);
+
+// Observe all animated elements
+document.querySelectorAll('.intro-card, .info-card, .structure-container, .contact-section').forEach(card => {
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(30px)';
+  card.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+  observer.observe(card);
+});
+
+// Enhanced position box hover effects
+document.querySelectorAll('.position-box').forEach(box => {
+  box.addEventListener('mouseenter', function() {
+    this.style.transform = 'translateY(-10px) scale(1.05) rotateY(5deg)';
+    this.style.zIndex = '10';
+  });
+  
+  box.addEventListener('mouseleave', function() {
+    this.style.transform = 'translateY(0) scale(1) rotateY(0deg)';
+    this.style.zIndex = '1';
+  });
+});
+
+// Add parallax effect to hero section
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
+  const heroSection = document.querySelector('.hero-section');
+  if (heroSection) {
+    heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
+  }
+});
+
+// Add click animation to download button
+document.querySelector('.download-btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  
+  // Create ripple effect
+  const ripple = document.createElement('span');
+  ripple.style.position = 'absolute';
+  ripple.style.borderRadius = '50%';
+  ripple.style.background = 'rgba(255,255,255,0.6)';
+  ripple.style.transform = 'scale(0)';
+  ripple.style.animation = 'ripple 0.6s linear';
+  ripple.style.left = e.offsetX - 10 + 'px';
+  ripple.style.top = e.offsetY - 10 + 'px';
+  ripple.style.width = '20px';
+  ripple.style.height = '20px';
+  
+  this.style.position = 'relative';
+  this.appendChild(ripple);
+  
+  setTimeout(() => {
+    ripple.remove();
+    alert('Fitur download akan segera tersedia');
+  }, 600);
+});
+
+// Add ripple animation keyframe
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes ripple {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(style);
+
+// Add smooth scrolling for internal links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Add typing effect to hero title (optional enhancement)
+const heroTitle = document.querySelector('.hero-title');
+if (heroTitle) {
+  const originalText = heroTitle.textContent;
+  heroTitle.textContent = '';
+  let i = 0;
+  
+  const typeWriter = () => {
+    if (i < originalText.length) {
+      heroTitle.textContent += originalText.charAt(i);
+      i++;
+      setTimeout(typeWriter, 100);
+    }
+  };
+  
+  setTimeout(typeWriter, 1500); // Start after loading animation
+}
+
+// Enhanced card hover effects
+document.querySelectorAll('.info-card, .intro-card, .contact-section').forEach(card => {
+  card.addEventListener('mouseenter', function() {
+    this.style.transform = 'translateY(-8px)';
+  });
+  
+  card.addEventListener('mouseleave', function() {
+    this.style.transform = 'translateY(0)';
+  });
+});
+
+// Smooth reveal animation for info grid
+const infoCards = document.querySelectorAll('.info-card');
+infoCards.forEach((card, index) => {
+  card.style.animationDelay = `${index * 0.1}s`;
+});
+</script>
+</body>
+</html>

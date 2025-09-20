@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pengumuman - Desa Candigugur</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      min-height: 100vh;
+      color: #334155;
+      line-height: 1.6;
+    }
+
+    /* Updated navbar styling to match tentang.html */
+    .navbar {
+      padding: 1rem 2rem;
+      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.95) !important;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 0.5rem 2rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    .navbar-brand img {
+      height: 48px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled .navbar-brand img {
+      height: 40px;
+    }
+
+    .brand-text {
+      margin-left: 10px;
+    }
+
+    .brand-text strong {
+      font-size: 1.2rem;
+      color: #374151;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .brand-text small {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .navbar-toggler {
+      border: none;
+      color: #374151;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2855, 65, 81, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .nav-link {
+      color: #374151 !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      padding: 8px 16px !important;
+      border-radius: 8px;
+    }
+
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #627188, #758499);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      width: 100%;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #627188 !important;
+      transform: translateY(-1px);
+      background: rgba(98, 113, 136, 0.1);
+    }
+
+    .dropdown-menu {
+      background: white;
+      border: none;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      padding: 8px 0;
+    }
+
+    .dropdown-item {
+      color: #475569;
+      font-weight: 500;
+      padding: 8px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item.active {
+      background: linear-gradient(135deg, #627188, #52637a) !important;
+      color: white !important;
+    }
+
+    .dropdown-item:hover {
+      background: #f1f5f9;
+      color: #627188;
+      transform: translateX(5px);
+    }
+
+    .hero-section {
+      background: linear-gradient(135deg, #627188 0%, #52637a 100%);
+      padding: 120px 0 80px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
+      animation: shimmer 8s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 700;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-subtitle {
+      position: relative;
+      z-index: 2;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .announcement-empty {
+      padding: 80px 0;
+      text-align: center;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      position: relative;
+    }
+
+    .announcement-empty .card {
+      border-radius: 16px;
+      padding: 40px;
+      background: linear-gradient(145deg, #ffffff, #f8fafc);
+      border: 1px solid rgba(98, 113, 136, 0.2);
+      box-shadow: 0 4px 15px rgba(98, 113, 136, 0.1);
+      transition: all 0.4s ease;
+    }
+
+    .announcement-empty .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(98, 113, 136, 0.15);
+    }
+
+    .announcement-empty i {
+      font-size: 3rem;
+      color: #627188;
+      margin-bottom: 20px;
+    }
+
+    .announcement-empty p {
+      color: #475569;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    /* Fitur Desa Section */
+    .fitur-desa {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      position: relative;
+      padding: 60px 0;
+    }
+
+    .fitur-desa::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(107, 114, 128, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(156, 163, 175, 0.03) 0%, transparent 50%);
+    }
+
+    .fitur-desa .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .fitur-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: linear-gradient(145deg, #ffffff, #f8fafc);
+      border: 1px solid #e5e7eb;
+      border-radius: 1.5rem;
+      padding: 2rem 1.5rem;
+      box-shadow: 
+        0 4px 12px rgba(0,0,0,0.03),
+        0 2px 6px rgba(0,0,0,0.02);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .fitur-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #9ca3af, #d1d5db);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .fitur-card:hover::before {
+      transform: translateX(0);
+    }
+
+    .fitur-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 
+        0 8px 20px rgba(0,0,0,0.08),
+        0 4px 12px rgba(0,0,0,0.04);
+      border-color: #d1d5db;
+    }
+
+    .icon-circle {
+      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+    }
+
+    .icon-circle::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(107, 114, 128, 0.1), transparent);
+      transition: all 0.3s ease;
+      opacity: 0;
+    }
+
+    .fitur-card:hover .icon-circle::before {
+      opacity: 1;
+      animation: rotate 3s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .icon-circle img {
+      width: 40px;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .fitur-card:hover .icon-circle img {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+
+    /* Informasi Wilayah Section */
+    .informasi-wilayah {
+      background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 60px 0;
+    }
+
+    .informasi-wilayah::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.03) 0%, transparent 40%);
+    }
+
+    .informasi-wilayah .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .informasi-wilayah h2 {
+      color: white !important;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .informasi-wilayah .text-muted {
+      color: rgba(255,255,255,0.8) !important;
+    }
+
+    .informasi-wilayah .bg-white {
+      background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(248,250,252,0.9)) !important;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(229,231,235,0.5) !important;
+    }
+
+    iframe {
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      transition: all 0.3s ease;
+    }
+
+    iframe:hover {
+      transform: scale(1.01);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 999;
+      background: linear-gradient(135deg, #64748b, #475569);
+      border: none;
+      outline: none;
+      padding: 12px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      box-shadow: 0 4px 12px rgba(100, 116, 139, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #scrollTopBtn:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 16px rgba(100, 116, 139, 0.4);
+    }
+
+    #scrollTopBtn svg {
+      fill: white !important;
+    }
+
+    /* Section divider */
+    .section-divider {
+      width: 60px; 
+      height: 3px; 
+      background: linear-gradient(90deg, #9ca3af, #d1d5db); 
+      margin: 0 auto; 
+      border-radius: 2px;
+    }
+
+    /* Enhanced Footer Styles */
+    .footer {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: #e2e8f0;
+      padding: 80px 0 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerPattern" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="30" cy="30" r="1" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23footerPattern)"/></svg>');
+      pointer-events: none;
+    }
+
+    .footer-logo {
+      width: 50px;
+      height: 50px;
+      margin-right: 15px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .footer-title {
+      color: #ffffff;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .footer-subtitle {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .footer-description {
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      font-size: 0.95rem;
+    }
+
+    .footer-section-title {
+      color: #ffffff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(135deg, #627188 0%, #10b981 100%);
+      border-radius: 2px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      padding: 8px 0;
+      border-radius: 8px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .footer-links a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #627188 0%, #10b981 100%);
+      transform: translateY(-50%);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+      transform: translateX(10px);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .footer-links a:hover::before {
+      width: 20px;
+    }
+
+    .footer-contact {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .footer-contact p {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .footer-contact i {
+      color: #10b981;
+      margin-right: 15px;
+      margin-top: 2px;
+      font-size: 1.1rem;
+      min-width: 20px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, rgba(98, 113, 136, 0.8) 0%, rgba(16, 185, 129, 0.8) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-link:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .footer-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+      margin: 50px 0 30px;
+    }
+
+    .footer-bottom {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      padding-top: 20px;
+    }
+
+    .footer-bottom p {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-bottom .fas.fa-heart {
+      color: #ef4444;
+      animation: heartbeat 2s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 50%, 100% { transform: scale(1); }
+      25%, 75% { transform: scale(1.1); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 767.98px) {
+      .hero-title { font-size: 2rem; }
+      .fitur-card { padding: 1.5rem 1rem; }
+      .icon-circle { width: 65px; height: 65px; }
+      .icon-circle img { width: 32px; }
+      #scrollTopBtn { bottom: 20px; right: 20px; width: 45px; height: 45px; }
+    }
+
+    @media (max-width: 575.98px) {
+      .hero-title { font-size: 1.8rem; }
+      .fitur-card { padding: 1.2rem 0.8rem; }
+      .icon-circle { width: 60px; height: 60px; }
+      .icon-circle img { width: 28px; }
+      .footer { padding: 50px 0 25px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav id="mainNavbar" class="navbar navbar-expand-lg shadow-sm sticky-top" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Beranda Desa Candigugur">
+      <img src="image/logo batang.png" alt="Logo Kabupaten Batang" />
+      <div class="brand-text">
+        <strong>Desa Candigugur</strong><br />
+        <small>Kabupaten Batang</small>
+      </div>
+    </a>
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      data-bs-toggle="collapse" 
+      data-bs-target="#navbarContent" 
+      aria-controls="navbarContent" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation menu"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+      <ul class="navbar-nav gap-2">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Beranda</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a 
+            class="nav-link dropdown-toggle" 
+            href="#" 
+            id="profilDropdown" 
+            role="button" 
+            data-bs-toggle="dropdown" 
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            Profil Desa
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="profilDropdown">
+            <li><a class="dropdown-item" href="tentang.html">Tentang Kami</a></li>
+            <li><a class="dropdown-item" href="visi.html">Visi & Misi</a></li>
+            <li><a class="dropdown-item" href="sejarah.html">Sejarah Desa</a></li>
+            <li><a class="dropdown-item" href="geografis.html">Geografis Desa</a></li>
+            <li><a class="dropdown-item" href="demografis.html">Demografis Desa</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a 
+            class="nav-link dropdown-toggle" 
+            href="#" 
+            id="pemerintahanDropdown" 
+            role="button" 
+            data-bs-toggle="dropdown" 
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            Pemerintahan
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="pemerintahanDropdown">
+            <li><a class="dropdown-item" href="struktur.html">Struktur</a></li>
+            <li><a class="dropdown-item" href="perangkat.html">Perangkat Desa</a></li>
+            <li><a class="dropdown-item" href="lembaga.html">Lembaga Desa</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="layanan.html">Layanan</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a 
+            class="nav-link dropdown-toggle active" 
+            href="#" 
+            id="informasiDropdown" 
+            role="button" 
+            data-bs-toggle="dropdown" 
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-current="page"
+          >
+            Informasi
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="informasiDropdown">
+            <li><a class="dropdown-item" href="berita.html">Berita</a></li>
+            <li><a class="dropdown-item active" href="pengumuman.html" aria-current="page">Pengumuman</a></li>
+            <li><a class="dropdown-item" href="agenda.html">Agenda Kegiatan</a></li>
+            <li><a class="dropdown-item" href="galeri.html">Galeri</a></li>
+            <li><a class="dropdown-item" href="apbdesa.html">APBDesa</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="potensi.html">Potensi Desa</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero-section">
+  <div class="container">
+    <h1 class="hero-title">Pengumuman</h1>
+    <p class="hero-subtitle">Informasi resmi Desa Candigugur</p>
+  </div>
+</section>
+
+<!-- Empty Announcement -->
+<section class="announcement-empty">
+  <div class="container">
+    <div class="card">
+      <i class="fas fa-bullhorn"></i>
+      <p>Saat ini belum ada pengumuman untuk ditampilkan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Tombol Scroll to Top -->
+<button onclick="scrollToTop()" id="scrollTopBtn" title="Kembali ke atas" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-chevron-up" viewBox="0 0 16 16" aria-hidden="true">
+    <path fill-rule="evenodd" d="M8 5.293l3.854 3.853-.708.708L8 6.707l-3.146 3.147-.708-.708L8 5.293z"/>
+  </svg>
+</button>
+
+<!-- Footer -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="d-flex align-items-center mb-3">
+          <img src="image/logo batang.png" alt="Logo Kabupaten Batang" class="footer-logo" loading="lazy" />
+          <div>
+            <h5 class="footer-title">Desa Candigugur</h5>
+            <small class="footer-subtitle">Kabupaten Batang</small>
+          </div>
+        </div>
+        <p class="footer-description">
+          Desa Candigugur adalah desa yang terletak di Kecamatan Bawang, Kabupaten Batang, 
+          Jawa Tengah dengan potensi alam dan budaya yang kaya.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook Desa Candigugur">
+            <i class="fab fa-facebook" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram Desa Candigugur">
+            <i class="fab fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube Desa Candigugur">
+            <i class="fab fa-youtube" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="WhatsApp Desa Candigugur">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h6 class="footer-section-title">Profil Desa</h6>
+        <ul class="footer-links">
+          <li><a href="tentang.html">Tentang Kami</a></li>
+          <li><a href="visi.html">Visi & Misi</a></li>
+          <li><a href="sejarah.html">Sejarah Desa</a></li>
+          <li><a href="geografis.html">Geografis</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h6 class="footer-section-title">Informasi</h6>
+        <ul class="footer-links">
+          <li><a href="berita.html">Berita</a></li>
+          <li><a href="pengumuman.html" aria-current="page">Pengumuman</a></li>
+          <li><a href="agenda.html">Agenda Kegiatan</a></li>
+          <li><a href="galeri.html">Galeri</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-4 mb-4">
+        <h6 class="footer-section-title">Kontak Kami</h6>
+        <div class="footer-contact">
+          <p>
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            <span>
+              Desa Candigugur, Kecamatan Bawang<br />
+              Kabupaten Batang, Jawa Tengah
+            </span>
+          </p>
+          <p>
+            <i class="fas fa-phone" aria-hidden="true"></i>
+            <span>+62 285 123 456</span>
+          </p>
+          <p>
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <span>candigugur@batangkab.go.id</span>
+          </p>
+          <p>
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span>Senin - Jumat: 07:00 - 16:00 WIB</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <hr class="footer-divider" />
+    
+    <div class="footer-bottom row align-items-center">
+      <div class="col-md-6">
+        <p>© 2025 Desa Candigugur. All rights reserved.</p>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <p>
+          Designed with <i class="fas fa-heart" aria-hidden="true"></i> for Candigugur
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('mainNavbar');
+    if (navbar && window.scrollY > 100) {
+      navbar.classList.add('scrolled');
+    } else if (navbar) {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Enhanced active navigation with better handling
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentPage = window.location.pathname.split("/").pop() || 'index.html';
+    const navLinks = document.querySelectorAll(".nav-link, .dropdown-item");
+    
+    // Remove any existing active classes first
+    navLinks.forEach(link => {
+      link.classList.remove("active");
+      link.removeAttribute("aria-current");
+    });
+    
+    // Set active states
+    navLinks.forEach((link) => {
+      const linkPage = link.getAttribute("href");
+      if (linkPage === currentPage) {
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
+        
+        // If it's a dropdown item, also mark the parent dropdown as active
+        const parentDropdown = link.closest('.dropdown');
+        if (parentDropdown) {
+          const parentToggle = parentDropdown.querySelector('.dropdown-toggle');
+          if (parentToggle && !parentToggle.classList.contains('active')) {
+            parentToggle.classList.add('active');
+            parentToggle.setAttribute("aria-current", "page");
+          }
+        }
+      }
+    });
+  });
+
+  // Enhanced dropdown functionality for better UX
+  document.addEventListener('DOMContentLoaded', function() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+      const toggle = dropdown.querySelector('.dropdown-toggle');
+      const menu = dropdown.querySelector('.dropdown-menu');
+      let hoverTimeout;
+      
+      // Mouse enter - show dropdown
+      dropdown.addEventListener('mouseenter', function() {
+        clearTimeout(hoverTimeout);
+        if (window.innerWidth > 991) { // Only on desktop
+          dropdown.classList.add('show');
+          toggle.setAttribute('aria-expanded', 'true');
+          menu.classList.add('show');
+        }
+      });
+      
+      // Mouse leave - hide dropdown with delay
+      dropdown.addEventListener('mouseleave', function() {
+        if (window.innerWidth > 991) { // Only on desktop
+          hoverTimeout = setTimeout(() => {
+            dropdown.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+            menu.classList.remove('show');
+          }, 150);
+        }
+      });
+      
+      // Handle keyboard navigation
+      toggle.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+          
+          // Close all other dropdowns first
+          dropdowns.forEach(otherDropdown => {
+            if (otherDropdown !== dropdown) {
+              otherDropdown.classList.remove('show');
+              otherDropdown.querySelector('.dropdown-toggle').setAttribute('aria-expanded', 'false');
+              otherDropdown.querySelector('.dropdown-menu').classList.remove('show');
+            }
+          });
+          
+          // Toggle current dropdown
+          if (isExpanded) {
+            dropdown.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+            menu.classList.remove('show');
+          } else {
+            dropdown.classList.add('show');
+            toggle.setAttribute('aria-expanded', 'true');
+            menu.classList.add('show');
+            // Focus first menu item
+            const firstItem = menu.querySelector('.dropdown-item');
+            if (firstItem) firstItem.focus();
+          }
+        }
+      });
+      
+      // Handle dropdown item keyboard navigation
+      const dropdownItems = menu.querySelectorAll('.dropdown-item');
+      dropdownItems.forEach((item, index) => {
+        item.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const nextItem = dropdownItems[index + 1] || dropdownItems[0];
+            nextItem.focus();
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prevItem = dropdownItems[index - 1] || dropdownItems[dropdownItems.length - 1];
+            prevItem.focus();
+          } else if (e.key === 'Escape') {
+            dropdown.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+            menu.classList.remove('show');
+            toggle.focus();
+          }
+        });
+      });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+      dropdowns.forEach(dropdown => {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove('show');
+          dropdown.querySelector('.dropdown-toggle').setAttribute('aria-expanded', 'false');
+          dropdown.querySelector('.dropdown-menu').classList.remove('show');
+        }
+      });
+    });
+  });
+
+  // Scroll to top functionality
+  window.onscroll = function () {
+    const btn = document.getElementById("scrollTopBtn");
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      btn.style.display = "block";
+    } else {
+      btn.style.display = "none";
+    }
+  };
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  // Enhanced navbar collapse behavior for mobile
+  document.addEventListener('DOMContentLoaded', function() {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    
+    // Close navbar when clicking on nav links (mobile)
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 992) {
+          const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+            hide: true
+          });
+        }
+      });
+    });
+    
+    // Update aria-expanded attribute properly
+    navbarToggler.addEventListener('click', function() {
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', (!isExpanded).toString());
+    });
+  });
+</script>
+</body>
+</html>

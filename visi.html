@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Visi Misi - Desa Candigugur</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #64748b 0%, #475569 100%);
+        --accent-gradient: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+        --text-dark: #2d3748;
+        --text-light: #718096;
+        --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        --card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.02)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.025)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .floating-shapes {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .shape {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .shape:nth-child(1) {
+        width: 120px;
+        height: 120px;
+        top: 10%;
+        left: 5%;
+        animation-delay: 0s;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.03) 100%
+        );
+      }
+      .shape:nth-child(2) {
+        width: 80px;
+        height: 80px;
+        top: 50%;
+        right: 10%;
+        animation-delay: 2s;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.08) 0%,
+          rgba(255, 255, 255, 0.02) 100%
+        );
+      }
+      .shape:nth-child(3) {
+        width: 60px;
+        height: 60px;
+        top: 70%;
+        left: 50%;
+        animation-delay: 4s;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0.01) 100%
+        );
+      }
+      .shape:nth-child(4) {
+        width: 40px;
+        height: 40px;
+        top: 30%;
+        left: 80%;
+        animation-delay: 6s;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.05) 0%,
+          rgba(255, 255, 255, 0.01) 100%
+        );
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg) scale(1);
+          opacity: 0.6;
+        }
+        50% {
+          transform: translateY(-30px) rotate(180deg) scale(1.1);
+          opacity: 0.8;
+        }
+      }
+
+      /* Navbar styling (unchanged) */
+      .navbar {
+        padding: 1rem 2rem;
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.95) !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        padding: 0.5rem 2rem;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      }
+
+      .navbar-brand img {
+        height: 48px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled .navbar-brand img {
+        height: 40px;
+      }
+
+      .brand-text {
+        margin-left: 10px;
+      }
+
+      .brand-text strong {
+        font-size: 1.2rem;
+        color: #374151;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      }
+
+      .brand-text small {
+        font-size: 0.9rem;
+        color: #6b7280;
+      }
+
+      .navbar-toggler {
+        border: none;
+        color: #374151;
+      }
+
+      .navbar-toggler:focus {
+        box-shadow: none;
+      }
+
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2855, 65, 81, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+
+      .nav-link {
+        color: #374151 !important;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        padding: 8px 16px !important;
+        border-radius: 8px;
+      }
+
+      .nav-link::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #6b7280, #9ca3af);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .nav-link:hover::before,
+      .nav-link.active::before {
+        width: 100%;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #6b7280 !important;
+        transform: translateY(-1px);
+        background: rgba(107, 114, 128, 0.1);
+      }
+
+      .dropdown-menu {
+        background: white;
+        border: none;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        border-radius: 12px;
+        padding: 8px 0;
+      }
+
+      .dropdown-item {
+        color: #475569;
+        font-weight: 500;
+        padding: 8px 20px;
+        transition: all 0.3s ease;
+      }
+
+      .dropdown-item.active {
+        background: linear-gradient(135deg, #6b7280, #4b5563) !important;
+        color: white !important;
+      }
+
+      .dropdown-item:hover {
+        background: #f1f5f9;
+        color: #1e40af;
+        transform: translateX(5px);
+      }
+
+      /* New Hero Section Design */
+      .hero-section {
+        padding: 80px 0;
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 255, 255, 0.15) 0%,
+          rgba(255, 255, 255, 0.05) 50%,
+          transparent 100%
+        );
+        z-index: 1;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        opacity: 0;
+        animation: fadeInUp 1s ease 0.2s forwards;
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 25px;
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeInUp 1.2s ease 0.4s forwards;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        line-height: 1.2;
+      }
+
+      .hero-subtitle {
+        font-size: 1.3rem;
+        font-weight: 400;
+        opacity: 0.9;
+        margin-bottom: 40px;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1.2s ease 0.6s forwards;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* New Content Layout */
+      .content-section {
+        padding: 100px 0;
+        position: relative;
+      }
+
+      .vision-mission-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        margin-bottom: 80px;
+      }
+
+      .section-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 30px;
+        padding: 50px 40px;
+        box-shadow: var(--card-shadow);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .section-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(100, 116, 139, 0.1),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .section-card:hover::before {
+        left: 100%;
+      }
+
+      .section-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--card-hover-shadow);
+        border-color: rgba(100, 116, 139, 0.3);
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .section-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--primary-gradient);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 2rem;
+        color: white;
+        box-shadow: 0 10px 30px rgba(100, 116, 139, 0.3);
+      }
+
+      .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .section-subtitle {
+        color: var(--text-light);
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .vision-statement {
+        background: linear-gradient(135deg, rgba(100, 116, 139, 0.1) 0%, rgba(100, 116, 139, 0.05) 100%);
+        padding: 30px;
+        border-radius: 20px;
+        border-left: 5px solid #64748b;
+        margin: 30px 0;
+        position: relative;
+      }
+
+      .vision-text {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: var(--text-dark);
+        font-weight: 600;
+        font-style: italic;
+        text-align: center;
+        margin: 0;
+        position: relative;
+        z-index: 2;
+      }
+
+      .vision-text::before,
+      .vision-text::after {
+        content: '"';
+        font-size: 3rem;
+        color: #64748b;
+        opacity: 0.3;
+        position: absolute;
+        font-family: serif;
+      }
+
+      .vision-text::before {
+        top: -10px;
+        left: -20px;
+      }
+
+      .vision-text::after {
+        bottom: -40px;
+        right: -20px;
+      }
+
+      .vision-description {
+        color: var(--text-light);
+        line-height: 1.7;
+        text-align: justify;
+        margin-bottom: 20px;
+      }
+
+      .mission-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+      }
+
+      .mission-item {
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 20px;
+        padding: 25px;
+        border: 2px solid rgba(100, 116, 139, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .mission-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--primary-gradient);
+        transition: width 0.3s ease;
+      }
+
+      .mission-item:hover::before {
+        width: 100%;
+        opacity: 0.05;
+      }
+
+      .mission-item:hover {
+        transform: translateY(-5px);
+        border-color: rgba(100, 116, 139, 0.3);
+        box-shadow: 0 10px 30px rgba(100, 116, 139, 0.15);
+      }
+
+      .mission-number {
+        width: 50px;
+        height: 50px;
+        background: var(--primary-gradient);
+        color: white;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+        box-shadow: 0 5px 15px rgba(100, 116, 139, 0.3);
+      }
+
+      .mission-text {
+        color: var(--text-dark);
+        line-height: 1.6;
+        font-weight: 500;
+        flex: 1;
+      }
+
+      .full-width-section {
+        grid-column: 1 / -1;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 30px;
+        padding: 60px 50px;
+        box-shadow: var(--card-shadow);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .section-divider {
+        height: 2px;
+        background: var(--primary-gradient);
+        border-radius: 1px;
+        width: 100px;
+        margin: 60px auto;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .section-divider::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.5);
+        animation: shimmer 2s ease infinite;
+      }
+
+      @keyframes shimmer {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+
+      .scroll-indicator {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.2);
+        z-index: 1000;
+      }
+
+      .scroll-progress {
+        height: 100%;
+        background: var(--accent-gradient);
+        width: 0%;
+        transition: width 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .scroll-progress::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 20px;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: skewX(-20deg);
+      }
+
+      .decorative-dots {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.05) 1px,
+          transparent 1px
+        );
+        background-size: 30px 30px;
+        opacity: 0.3;
+        animation: drift 20s linear infinite;
+      }
+
+      @keyframes drift {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(-30px, -30px);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .vision-mission-container {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1.1rem;
+        }
+
+        .section-card {
+          padding: 40px 30px;
+        }
+
+        .section-title {
+          font-size: 1.5rem;
+        }
+
+        .mission-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .mission-item {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .hero-title {
+          font-size: 2rem;
+        }
+
+        .section-card {
+          padding: 30px 25px;
+        }
+
+        .section-icon {
+          width: 60px;
+          height: 60px;
+          font-size: 1.5rem;
+        }
+
+        .vision-text::before,
+        .vision-text::after {
+          font-size: 2rem;
+        }
+      }
+
+      /* Footer styles (unchanged) */
+      .footer {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        color: #e2e8f0;
+        padding: 80px 0 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerPattern" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="30" cy="30" r="1" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23footerPattern)"/></svg>');
+        pointer-events: none;
+      }
+
+      .footer-logo {
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .footer-logo:hover {
+        transform: scale(1.05);
+      }
+
+      .footer-title {
+        color: #ffffff;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
+
+      .footer-subtitle {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .footer-description {
+        color: #cbd5e1;
+        line-height: 1.7;
+        margin-bottom: 30px;
+        font-size: 0.95rem;
+      }
+
+      .footer-section-title {
+        color: #ffffff;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .footer-section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(135deg, #627188 0%, #10b981 100%);
+        border-radius: 2px;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 12px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .footer-links a {
+        color: #cbd5e1;
+        text-decoration: none;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        padding: 8px 0;
+        border-radius: 8px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+      }
+
+      .footer-links a::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(135deg, #627188 0%, #10b981 100%);
+        transform: translateY(-50%);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .footer-links a:hover {
+        color: #ffffff;
+        transform: translateX(10px);
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
+
+      .footer-links a:hover::before {
+        width: 20px;
+      }
+
+      .footer-links a[aria-current="page"] {
+        color: #10b981;
+        font-weight: 600;
+      }
+
+      .footer-contact {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      .footer-contact p {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        color: #cbd5e1;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .footer-contact i {
+        color: #10b981;
+        margin-right: 15px;
+        margin-top: 2px;
+        font-size: 1.1rem;
+        min-width: 20px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 25px;
+      }
+
+      .social-link {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, rgba(98, 113, 136, 0.8) 0%, rgba(16, 185, 129, 0.8) 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .social-link::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.4s ease;
+      }
+
+      .social-link:hover::before {
+        width: 100%;
+        height: 100%;
+      }
+
+      .social-link:hover {
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .social-link i {
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+        margin: 50px 0 30px;
+      }
+
+      .footer-bottom {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        padding-top: 20px;
+      }
+
+      .footer-bottom p {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .footer-bottom .fas.fa-heart {
+        color: #ef4444;
+        animation: heartbeat 2s ease-in-out infinite;
+      }
+
+      @keyframes heartbeat {
+        0%, 50%, 100% {
+          transform: scale(1);
+        }
+        25%, 75% {
+          transform: scale(1.1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-indicator">
+      <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <div class="floating-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+
+    <div class="decorative-dots"></div>
+
+    <!-- Navbar (unchanged) -->
+    <nav class="navbar navbar-expand-lg shadow-sm sticky-top" id="mainNavbar">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="image/logo batang.png" alt="Logo" />
+          <div class="brand-text">
+            <strong>Desa Candigugur</strong><br />
+            <small>Kabupaten Batang</small>
+          </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+          <ul class="navbar-nav gap-2">
+            <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Profil Desa</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="tentang.html">Tentang Kami</a></li>
+                <li><a class="dropdown-item active" href="visi.html">Visi & Misi</a></li>
+                <li><a class="dropdown-item" href="sejarah.html">Sejarah Desa</a></li>
+                <li><a class="dropdown-item" href="geografis.html">Geografis Desa</a></li>
+                <li><a class="dropdown-item" href="demografis.html">Demografis Desa</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pemerintahan</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="struktur.html">Struktur</a></li>
+                <li><a class="dropdown-item" href="perangkat.html">Perangkat Desa</a></li>
+                <li><a class="dropdown-item" href="lembaga.html">Lembaga Desa</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="layanan.html">Layanan</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Informasi</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="berita.html">Berita</a></li>
+                <li><a class="dropdown-item" href="pengumuman.html">Pengumuman</a></li>
+                <li><a class="dropdown-item" href="agenda.html">Agenda Kegiatan</a></li>
+                <li><a class="dropdown-item" href="galeri.html">Galeri</a></li>
+                <li><a class="dropdown-item" href="apbdesa.html">APBDesa</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="potensi.html">Potensi Desa</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- New Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">Profil Desa</div>
+          <h1 class="hero-title">Visi & Misi</h1>
+          <p class="hero-subtitle">
+            Panduan strategis untuk mewujudkan Desa Candigugur yang aman, sehat, dan sejahtera dengan sumber daya manusia yang beriman dan bertaqwa
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- New Content Section -->
+    <section class="content-section">
+      <div class="container">
+        <div class="vision-mission-container">
+          <!-- Visi Section -->
+          <div class="section-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="section-header">
+              <div class="section-icon">
+                <i class="fas fa-eye"></i>
+              </div>
+              <h2 class="section-title">Visi</h2>
+              <p class="section-subtitle">Gambaran Masa Depan yang Diinginkan</p>
+            </div>
+            
+            <div class="vision-statement">
+              <p class="vision-text">
+                Terwujudnya desa aman, sehat dan sejahtera (ASTRA) dengan sumber daya manusia yang beriman dan bertaqwa menjadikan manusia yang berkualitas.
+              </p>
+            </div>
+            
+            <p class="vision-description">
+              Visi ini merupakan hasil dari pendekatan partisipatif yang melibatkan seluruh elemen masyarakat Desa Candigugur, termasuk pemerintah desa, BPD, tokoh masyarakat, tokoh agama, dan lembaga kemasyarakatan.
+            </p>
+          </div>
+
+          <!-- Misi Section -->
+          <div class="section-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="section-header">
+              <div class="section-icon">
+                <i class="fas fa-bullseye"></i>
+              </div>
+              <h2 class="section-title">Misi</h2>
+              <p class="section-subtitle">Langkah Strategis Pencapaian Visi</p>
+            </div>
+
+            <p class="vision-description">
+              Misi adalah pernyataan yang harus dilaksanakan untuk mencapai visi desa. Berikut adalah misi-misi Desa Candigugur:
+            </p>
+
+            <div class="mission-grid">
+              <div class="mission-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="mission-number">1</div>
+                <div class="mission-text">
+                  Menyelenggarakan pemerintahan yang aman dan damai dari segala perbuatan kemaksiatan dari dalam maupun luar desa.
+                </div>
+              </div>
+
+              <div class="mission-item" data-aos="fade-up" data-aos-delay="350">
+                <div class="mission-number">2</div>
+                <div class="mission-text">
+                  Membangun pola hidup masyarakat yang sehat melalui kebersihan dengan memberdayakan Forum Kesehatan Desa (FKD).
+                </div>
+              </div>
+
+              <div class="mission-item" data-aos="fade-up" data-aos-delay="400">
+                <div class="mission-number">3</div>
+                <div class="mission-text">
+                  Membangun sarana prasarana pertanian bertumpu pada perekonomian yang produktif dan memadai.
+                </div>
+              </div>
+
+              <div class="mission-item" data-aos="fade-up" data-aos-delay="450">
+                <div class="mission-number">4</div>
+                <div class="mission-text">
+                  Meningkatkan taraf hidup masyarakat menuju kehidupan yang layak dan sejahtera.
+                </div>
+              </div>
+
+              <div class="mission-item" data-aos="fade-up" data-aos-delay="500">
+                <div class="mission-number">5</div>
+                <div class="mission-text">
+                  Menciptakan kondisi manusia yang agamis dengan mewujudkan manusia yang beriman dan bertaqwa.
+                </div>
+              </div>
+
+              <div class="mission-item" data-aos="fade-up" data-aos-delay="550">
+                <div class="mission-number">6</div>
+                <div class="mission-text">
+                  Menjadikan sumber daya manusia yang berkualitas.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Additional Context Section -->
+        <div class="full-width-section" data-aos="fade-up" data-aos-delay="600">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <div class="section-header text-start">
+                <div class="section-icon mx-0">
+                  <i class="fas fa-users"></i>
+                </div>
+                <h3 class="section-title">Pendekatan Partisipatif</h3>
+                <p class="section-subtitle">Melibatkan Seluruh Elemen Masyarakat</p>
+              </div>
+              <p class="vision-description">
+                Penyusunan visi dan misi Desa Candigugur dilakukan melalui pendekatan partisipatif dengan melibatkan berbagai pihak yang berkepentingan, termasuk:
+              </p>
+              <ul style="list-style: none; padding: 0;">
+                <li style="padding: 8px 0; color: var(--text-dark);"><i class="fas fa-check-circle" style="color: #64748b; margin-right: 10px;"></i> Pemerintah Desa</li>
+                <li style="padding: 8px 0; color: var(--text-dark);"><i class="fas fa-check-circle" style="color: #64748b; margin-right: 10px;"></i> Badan Permusyawaratan Desa (BPD)</li>
+                <li style="padding: 8px 0; color: var(--text-dark);"><i class="fas fa-check-circle" style="color: #64748b; margin-right: 10px;"></i> Tokoh Masyarakat dan Tokoh Agama</li>
+                <li style="padding: 8px 0; color: var(--text-dark);"><i class="fas fa-check-circle" style="color: #64748b; margin-right: 10px;"></i> Lembaga Kemasyarakatan Desa</li>
+                <li style="padding: 8px 0; color: var(--text-dark);"><i class="fas fa-check-circle" style="color: #64748b; margin-right: 10px;"></i> Masyarakat Desa secara umum</li>
+              </ul>
+            </div>
+            <div class="col-lg-6 text-center">
+              <div style="background: var(--primary-gradient); width: 200px; height: 200px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 20px 40px rgba(100, 116, 139, 0.3);">
+                <i class="fas fa-handshake" style="font-size: 4rem; color: white;"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer (unchanged) -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-4">
+            <div class="d-flex align-items-center mb-3">
+              <img src="image/logo batang.png" alt="Logo Kabupaten Batang" class="footer-logo" loading="lazy">
+              <div>
+                <h5 class="footer-title">Desa Candigugur</h5>
+                <small class="footer-subtitle">Kabupaten Batang</small>
+              </div>
+            </div>
+            <p class="footer-description">
+              Desa Candigugur adalah desa yang terletak di Kecamatan Bawang, Kabupaten Batang, 
+              Jawa Tengah dengan potensi alam dan budaya yang kaya.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Facebook Desa Candigugur">
+                <i class="fab fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="Instagram Desa Candigugur">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="YouTube Desa Candigugur">
+                <i class="fab fa-youtube" aria-hidden="true"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="WhatsApp Desa Candigugur">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6 class="footer-section-title">Profil Desa</h6>
+            <ul class="footer-links">
+              <li><a href="tentang.html">Tentang Kami</a></li>
+              <li><a href="visi.html">Visi & Misi</a></li>
+              <li><a href="sejarah.html">Sejarah Desa</a></li>
+              <li><a href="geografis.html">Geografis</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6 class="footer-section-title">Informasi</h6>
+            <ul class="footer-links">
+              <li><a href="berita.html">Berita</a></li>
+              <li><a href="pengumuman.html">Pengumuman</a></li>
+              <li><a href="agenda.html">Agenda Kegiatan</a></li>
+              <li><a href="galeri.html">Galeri</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-lg-4 mb-4">
+            <h6 class="footer-section-title">Kontak Kami</h6>
+            <div class="footer-contact">
+              <p>
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                <span>
+                  Desa Candigugur, Kecamatan Bawang<br>
+                  Kabupaten Batang, Jawa Tengah
+                </span>
+              </p>
+              <p>
+                <i class="fas fa-phone" aria-hidden="true"></i>
+                <span>+62 285 123 456</span>
+              </p>
+              <p>
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+                <span>candigugur@batangkab.go.id</span>
+              </p>
+              <p>
+                <i class="fas fa-clock" aria-hidden="true"></i>
+                <span>Senin - Jumat: 07:00 - 16:00 WIB</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <hr class="footer-divider">
+        
+        <div class="footer-bottom row align-items-center">
+          <div class="col-md-6">
+            <p>&copy; 2025 Desa Candigugur. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <p>
+              Designed with <i class="fas fa-heart" style="color: #ef4444;" aria-hidden="true"></i> for Candigugur
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Enhanced scroll progress indicator
+      window.addEventListener("scroll", () => {
+        const scrolled =
+          (window.pageYOffset /
+            (document.documentElement.scrollHeight - window.innerHeight)) *
+          100;
+        document.getElementById("scrollProgress").style.width = scrolled + "%";
+
+        // Dynamic navbar styling
+        const navbar = document.getElementById("mainNavbar");
+        if (navbar) {
+          if (window.scrollY > 100) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        }
+      });
+
+      // Set active nav item
+      const currentPage = window.location.pathname.split("/").pop();
+      const navLinks = document.querySelectorAll(".nav-link, .dropdown-item");
+      navLinks.forEach((link) => {
+        const linkPage = link.getAttribute("href");
+        if (linkPage === currentPage) {
+          link.classList.add("active");
+        }
+      });
+
+      // Simple fade in animation for cards
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Observe cards for animation
+      document.querySelectorAll(".section-card, .full-width-section, .mission-item").forEach((el) => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(30px)";
+        el.style.transition = "all 0.8s ease";
+        observer.observe(el);
+      });
+
+      // Enhanced parallax effect
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const shapes = document.querySelectorAll(".shape");
+
+        shapes.forEach((shape, index) => {
+          const speed = (index + 1) * 0.3;
+          const translateY = scrolled * speed;
+          shape.style.transform = `translateY(${translateY}px)`;
+        });
+
+        // Parallax for decorative dots
+        const dots = document.querySelector(".decorative-dots");
+        if (dots) {
+          dots.style.transform = `translate(${scrolled * -0.1}px, ${
+            scrolled * -0.1
+          }px)`;
+        }
+      });
+
+      // Smooth scrolling for internal links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Add hover effects to mission items
+      document.querySelectorAll('.mission-item').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+    </script>
+  </body>
+</html>

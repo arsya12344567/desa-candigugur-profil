@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sejarah Desa - Candigugur</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <style>
+      /* === GLOBAL STYLES === */
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+        line-height: 1.7;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+          radial-gradient(circle at 20% 20%, rgba(107, 114, 128, 0.05) 0%, transparent 40%),
+          radial-gradient(circle at 80% 80%, rgba(156, 163, 175, 0.05) 0%, transparent 40%);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      /* === SCROLL PROGRESS BAR === */
+      .scroll-indicator {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: rgba(0, 0, 0, 0.05);
+        z-index: 999;
+      }
+
+      .scroll-progress {
+        height: 100%;
+        background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+        width: 0%;
+        transition: width 0.3s ease;
+      }
+
+      /* === NAVBAR STYLES (FIXED TO MATCH VISI.HTML) === */
+      .navbar {
+        padding: 1rem 2rem;
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.95) !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        padding: 0.5rem 2rem;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      }
+
+      .navbar-brand img {
+        height: 48px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled .navbar-brand img {
+        height: 40px;
+      }
+
+      .brand-text {
+        margin-left: 10px;
+      }
+
+      .brand-text strong {
+        font-size: 1.2rem;
+        color: #374151;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      }
+
+      .brand-text small {
+        font-size: 0.9rem;
+        color: #6b7280;
+      }
+
+      .navbar-toggler {
+        border: none;
+        color: #374151;
+      }
+
+      .navbar-toggler:focus {
+        box-shadow: none;
+      }
+
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2855, 65, 81, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+
+      .nav-link {
+        color: #374151 !important;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        padding: 8px 16px !important;
+        border-radius: 8px;
+      }
+
+      .nav-link::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #6b7280, #9ca3af);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .nav-link:hover::before,
+      .nav-link.active::before {
+        width: 100%;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #6b7280 !important;
+        transform: translateY(-1px);
+        background: rgba(107, 114, 128, 0.1);
+      }
+
+      .dropdown-menu {
+        background: white;
+        border: none;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        border-radius: 12px;
+        padding: 8px 0;
+      }
+
+      .dropdown-item {
+        color: #475569;
+        font-weight: 500;
+        padding: 8px 20px;
+        transition: all 0.3s ease;
+      }
+
+      .dropdown-item.active {
+        background: linear-gradient(135deg, #6b7280, #4b5563) !important;
+        color: white !important;
+      }
+
+      .dropdown-item:hover {
+        background: #f1f5f9;
+        color: #1e40af;
+        transform: translateX(5px);
+      }
+
+      /* === MAIN CONTENT === */
+      .main-content {
+        padding: 120px 20px 80px;
+        position: relative;
+      }
+
+      /* === HERO SECTION === */
+      .hero-section {
+        position: relative;
+        background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(248,250,252,0.9));
+        backdrop-filter: blur(20px);
+        border-radius: 2rem;
+        padding: 4rem 2rem;
+        box-shadow: 
+          0 15px 40px rgba(0,0,0,0.08),
+          0 6px 16px rgba(0,0,0,0.04);
+        border: 1px solid rgba(229, 231, 235, 0.6);
+        margin-bottom: 3rem;
+        overflow: hidden;
+      }
+
+      .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #64748b, #94a3b8, #64748b);
+      }
+
+      .hero-icon {
+        background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 
+          0 8px 20px rgba(100, 116, 139, 0.15),
+          inset 0 4px 8px rgba(255,255,255,0.5);
+        border: 3px solid rgba(229, 231, 235, 0.8);
+        transition: all 0.3s ease;
+        margin: 0 auto 2rem;
+      }
+
+      .hero-icon:hover {
+        transform: scale(1.05) rotate(5deg);
+        box-shadow: 0 12px 30px rgba(100, 116, 139, 0.2);
+      }
+
+      .hero-icon i {
+        font-size: 3rem;
+        color: #64748b;
+      }
+
+      .hero-title {
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 1rem;
+        font-size: 3rem;
+        text-align: center;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+        color: #6b7280;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-weight: 400;
+      }
+
+      .hero-description {
+        font-size: 1.1rem;
+        color: #475569;
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.8;
+      }
+
+      /* === CONTENT SECTIONS === */
+      .content-section {
+        background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(248,250,252,0.9));
+        backdrop-filter: blur(20px);
+        border-radius: 2rem;
+        padding: 3rem 2.5rem;
+        box-shadow: 
+          0 10px 30px rgba(0,0,0,0.06),
+          0 4px 12px rgba(0,0,0,0.04);
+        border: 1px solid rgba(229, 231, 235, 0.6);
+        margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .content-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, #64748b, #94a3b8, #64748b);
+      }
+
+      .content-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 
+          0 20px 50px rgba(0,0,0,0.1),
+          0 8px 20px rgba(0,0,0,0.06);
+      }
+
+      .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 2rem;
+        position: relative;
+        padding-left: 20px;
+      }
+
+      .section-title::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 60%;
+        background: linear-gradient(180deg, #64748b, #94a3b8);
+        border-radius: 2px;
+      }
+
+      .section-content {
+        color: #334155;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        text-align: justify;
+      }
+
+      /* === STORY CARDS === */
+      .story-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .story-card {
+        background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(248,250,252,0.8));
+        border-radius: 1.5rem;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        border: 1px solid rgba(229, 231, 235, 0.5);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .story-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, #64748b, #94a3b8);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .story-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .story-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      }
+
+      .story-number {
+        background: linear-gradient(135deg, #64748b, #475569);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0 auto 1.5rem;
+        box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2);
+      }
+
+      .story-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .story-text {
+        color: #475569;
+        line-height: 1.7;
+        text-align: justify;
+      }
+
+      /* === ENHANCED TIMELINE === */
+      .timeline-container {
+        position: relative;
+        padding: 2rem 0;
+      }
+
+      .timeline-line {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(180deg, #64748b, #94a3b8, #64748b);
+        transform: translateX(-50%);
+        border-radius: 2px;
+        box-shadow: 0 0 10px rgba(100, 116, 139, 0.2);
+      }
+
+      .timeline-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 3rem;
+        position: relative;
+      }
+
+      .timeline-item:nth-child(odd) {
+        flex-direction: row;
+      }
+
+      .timeline-item:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .timeline-content {
+        flex: 1;
+        max-width: 45%;
+        background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(248,250,252,0.9));
+        padding: 2rem;
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        border: 1px solid rgba(229, 231, 235, 0.5);
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .timeline-content::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 15px solid transparent;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content::before {
+        right: -30px;
+        border-left-color: rgba(255,255,255,0.95);
+        transform: translateY(-50%);
+      }
+
+      .timeline-item:nth-child(even) .timeline-content::before {
+        left: -30px;
+        border-right-color: rgba(255,255,255,0.95);
+        transform: translateY(-50%);
+      }
+
+      .timeline-content:hover {
+        transform: scale(1.02);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+      }
+
+      .timeline-year-badge {
+        background: linear-gradient(135deg, #64748b, #475569);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 6px 20px rgba(100, 116, 139, 0.3);
+        z-index: 10;
+        min-width: 100px;
+        text-align: center;
+        border: 3px solid white;
+      }
+
+      .timeline-event-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 1rem;
+      }
+
+      .timeline-event-text {
+        color: #475569;
+        line-height: 1.7;
+        font-size: 1rem;
+      }
+
+       /* Footer styles (unchanged) */
+      .footer {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        color: #e2e8f0;
+        padding: 80px 0 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerPattern" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="30" cy="30" r="1" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23footerPattern)"/></svg>');
+        pointer-events: none;
+      }
+
+      .footer-logo {
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .footer-logo:hover {
+        transform: scale(1.05);
+      }
+
+      .footer-title {
+        color: #ffffff;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
+
+      .footer-subtitle {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .footer-description {
+        color: #cbd5e1;
+        line-height: 1.7;
+        margin-bottom: 30px;
+        font-size: 0.95rem;
+      }
+
+      .footer-section-title {
+        color: #ffffff;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .footer-section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(135deg, #627188 0%, #10b981 100%);
+        border-radius: 2px;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 12px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .footer-links a {
+        color: #cbd5e1;
+        text-decoration: none;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        padding: 8px 0;
+        border-radius: 8px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+      }
+
+      .footer-links a::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(135deg, #627188 0%, #10b981 100%);
+        transform: translateY(-50%);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .footer-links a:hover {
+        color: #ffffff;
+        transform: translateX(10px);
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
+
+      .footer-links a:hover::before {
+        width: 20px;
+      }
+
+      .footer-links a[aria-current="page"] {
+        color: #10b981;
+        font-weight: 600;
+      }
+
+      .footer-contact {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      .footer-contact p {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        color: #cbd5e1;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .footer-contact i {
+        color: #10b981;
+        margin-right: 15px;
+        margin-top: 2px;
+        font-size: 1.1rem;
+        min-width: 20px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 25px;
+      }
+
+      .social-link {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, rgba(98, 113, 136, 0.8) 0%, rgba(16, 185, 129, 0.8) 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .social-link::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.4s ease;
+      }
+
+      .social-link:hover::before {
+        width: 100%;
+        height: 100%;
+      }
+
+      .social-link:hover {
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .social-link i {
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+        margin: 50px 0 30px;
+      }
+
+      .footer-bottom {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        padding-top: 20px;
+      }
+
+      .footer-bottom p {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .footer-bottom .fas.fa-heart {
+        color: #ef4444;
+        animation: heartbeat 2s ease-in-out infinite;
+      }
+
+      /* === RESPONSIVE STYLES === */
+      @media (max-width: 992px) {
+        .navbar {
+          padding: 1rem;
+        }
+
+        .navbar.scrolled {
+          padding: 0.5rem 1rem;
+        }
+
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .timeline-line {
+          left: 30px;
+        }
+
+        .timeline-item {
+          flex-direction: row !important;
+          padding-left: 60px;
+        }
+
+        .timeline-content {
+          max-width: 100%;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before,
+        .timeline-item:nth-child(even) .timeline-content::before {
+          left: -30px;
+          right: auto;
+          border-right-color: rgba(255,255,255,0.95);
+          border-left-color: transparent;
+          transform: translateY(-50%);
+        }
+
+        .timeline-year-badge {
+          left: 30px;
+          transform: translateX(0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1rem;
+        }
+
+        .hero-description {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 1.7rem;
+        }
+
+        .story-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .content-section {
+          padding: 2rem 1.5rem;
+        }
+
+        .main-content {
+          padding: 100px 15px 60px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .navbar-brand img {
+          height: 40px;
+        }
+
+        .brand-text strong {
+          font-size: 1rem;
+        }
+
+        .brand-text small {
+          font-size: 0.8rem;
+        }
+
+        .hero-title {
+          font-size: 1.8rem;
+        }
+
+        .hero-section {
+          padding: 2rem 1.5rem;
+        }
+
+        .hero-icon {
+          width: 100px;
+          height: 100px;
+        }
+
+        .hero-icon i {
+          font-size: 2.5rem;
+        }
+
+        .section-title {
+          font-size: 1.5rem;
+        }
+
+        .content-section {
+          padding: 1.5rem 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-indicator">
+      <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <!-- Navbar (FIXED TO MATCH VISI.HTML) -->
+    <nav class="navbar navbar-expand-lg shadow-sm sticky-top" id="mainNavbar">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="image/logo batang.png" alt="Logo" />
+          <div class="brand-text">
+            <strong>Desa Candigugur</strong><br />
+            <small>Kabupaten Batang</small>
+          </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+          <ul class="navbar-nav gap-2">
+            <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Profil Desa</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="tentang.html">Tentang Kami</a></li>
+                <li><a class="dropdown-item" href="visi.html">Visi & Misi</a></li>
+                <li><a class="dropdown-item active" href="sejarah.html">Sejarah Desa</a></li>
+                <li><a class="dropdown-item" href="geografis.html">Geografis Desa</a></li>
+                <li><a class="dropdown-item" href="demografis.html">Demografis Desa</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pemerintahan</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="struktur.html">Struktur</a></li>
+                <li><a class="dropdown-item" href="perangkat.html">Perangkat Desa</a></li>
+                <li><a class="dropdown-item" href="lembaga.html">Lembaga Desa</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="layanan.html">Layanan</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Informasi</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="berita.html">Berita</a></li>
+                <li><a class="dropdown-item" href="pengumuman.html">Pengumuman</a></li>
+                <li><a class="dropdown-item" href="agenda.html">Agenda Kegiatan</a></li>
+                <li><a class="dropdown-item" href="galeri.html">Galeri</a></li>
+                <li><a class="dropdown-item" href="apbdesa.html">APBDesa</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="potensi.html">Potensi Desa</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+          <div class="hero-icon">
+            <i class="fas fa-landmark"></i>
+          </div>
+          <h1 class="hero-title">Sejarah Desa Candigugur</h1>
+          <p class="hero-subtitle">Melacak Jejak Sejarah dan Perkembangan Desa</p>
+          <p class="hero-description">
+            Desa Candigugur memiliki sejarah panjang yang membentuk identitas dan karakter masyarakatnya. Dari masa ke masa, desa ini terus berkembang dengan tetap mempertahankan nilai-nilai luhur warisan leluhur.
+          </p>
+        </div>
+
+        <!-- Sejarah Awal -->
+        <div class="content-section">
+          <h2 class="section-title">Asal Usul Nama</h2>
+          <div class="section-content">
+            <p>
+              Nama Candigugur berasal dari dua kata dalam bahasa Sunda, yaitu "Candi" yang merujuk pada situs peninggalan sejarah, dan "Gugur" yang berarti runtuh. Menurut cerita rakyat setempat, nama ini diberikan karena ditemukannya reruntuhan candi di daerah ini pada masa lalu.
+            </p>
+            <p>
+              Legenda setempat menceritakan bahwa dahulu kala terdapat sebuah kerajaan kecil yang memiliki candi megah. Suatu hari, terjadi gempa bumi besar yang menyebabkan candi tersebut runtuh. Sejak saat itu, daerah tersebut dikenal dengan nama Candigugur.
+            </p>
+          </div>
+        </div>
+
+        <!-- Story Cards -->
+        <div class="story-grid">
+          <div class="story-card">
+            <div class="story-number">1</div>
+            <h3 class="story-title">Masa Pra-Kemerdekaan</h3>
+            <p class="story-text">
+              Pada masa kolonial Belanda, Candigugur merupakan daerah perkebunan dengan masyarakat yang hidup dari bertani dan berkebun. Struktur sosial saat itu masih sangat tradisional dengan sistem kepemimpinan adat yang kuat.
+            </p>
+          </div>
+          <div class="story-card">
+            <div class="story-number">2</div>
+            <h3 class="story-title">Era Kemerdekaan</h3>
+            <p class="story-text">
+              Setelah Indonesia merdeka, Candigugur secara resmi ditetapkan sebagai desa pada tahun 1948. Masyarakat mulai membangun institusi desa dan memperkuat identitas sebagai bagian dari Negara Kesatuan Republik Indonesia.
+            </p>
+          </div>
+          <div class="story-card">
+            <div class="story-number">3</div>
+            <h3 class="story-title">Era Modern</h3>
+            <p class="story-text">
+              Dalam beberapa dekade terakhir, Candigugur mengalami transformasi signifikan dengan masuknya teknologi modern, sambil tetap mempertahankan nilai-nilai kearifan lokal dan budaya Sunda yang menjadi jati diri masyarakat.
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline Section -->
+        <div class="content-section">
+          <h2 class="section-title">Linimasa Sejarah</h2>
+          <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h3 class="timeline-event-title">Pendirian Desa</h3>
+                <p class="timeline-event-text">
+                  Desa Candigugur secara resmi didirikan pada tahun 1948, bersamaan dengan pengakuan negara atas struktur pemerintahan desa di seluruh Indonesia.
+                </p>
+              </div>
+              <div class="timeline-year-badge">1948</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h3 class="timeline-event-title">Pembangunan Balai Desa</h3>
+                <p class="timeline-event-text">
+                  Balai Desa pertama dibangun pada tahun 1965, menjadi pusat aktivitas pemerintahan dan sosial masyarakat.
+                </p>
+              </div>
+              <div class="timeline-year-badge">1965</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h3 class="timeline-event-title">Listrik Masuk Desa</h3>
+                <p class="timeline-event-text">
+                  Tahun 1985 menjadi tahun bersejarah dengan masuknya listrik ke desa, membawa perubahan signifikan dalam kehidupan masyarakat.
+                </p>
+              </div>
+              <div class="timeline-year-badge">1985</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h3 class="timeline-event-title">Reformasi Pemerintahan</h3>
+                <p class="timeline-event-text">
+                  Era reformasi membawa perubahan sistem pemerintahan desa dengan diterapkannya otonomi daerah yang lebih luas pada tahun 2000.
+                </p>
+              </div>
+              <div class="timeline-year-badge">2000</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h3 class="timeline-event-title">Pengembangan Wisata</h3>
+                <p class="timeline-event-text">
+                  Sejak 2015, desa mulai mengembangkan potensi wisata berbasis budaya dan alam, meningkatkan perekonomian masyarakat.
+                </p>
+              </div>
+              <div class="timeline-year-badge">2015</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tokoh Sejarah -->
+        <div class="content-section">
+          <h2 class="section-title">Tokoh Sejarah</h2>
+          <div class="section-content">
+            <p>
+              Desa Candigugur memiliki beberapa tokoh penting yang berperan dalam perkembangan desa. Di antaranya adalah Eyang Karta, yang dianggap sebagai sesepuh desa dan pemimpin spiritual pada masa awal. Kemudian ada Bapak Raden Sumarta, kepala desa pertama yang menjabat dari tahun 1948 hingga 1960.
+            </p>
+            <p>
+              Pada era modern, nama Bapak Asep Sunarya patut dicatat sebagai kepala desa yang membawa banyak perubahan infrastruktur dan pemberdayaan masyarakat dari tahun 1995 hingga 2010. Kontribusi para tokoh ini menjadi fondasi kemajuan Desa Candigugur yang dapat kita lihat hingga saat ini.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   <!-- Footer (unchanged) -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-4">
+            <div class="d-flex align-items-center mb-3">
+              <img src="image/logo batang.png" alt="Logo Kabupaten Batang" class="footer-logo" loading="lazy">
+              <div>
+                <h5 class="footer-title">Desa Candigugur</h5>
+                <small class="footer-subtitle">Kabupaten Batang</small>
+              </div>
+            </div>
+            <p class="footer-description">
+              Desa Candigugur adalah desa yang terletak di Kecamatan Bawang, Kabupaten Batang, 
+              Jawa Tengah dengan potensi alam dan budaya yang kaya.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Facebook Desa Candigugur">
+                <i class="fab fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="Instagram Desa Candigugur">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="YouTube Desa Candigugur">
+                <i class="fab fa-youtube" aria-hidden="true"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="WhatsApp Desa Candigugur">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6 class="footer-section-title">Profil Desa</h6>
+            <ul class="footer-links">
+              <li><a href="tentang.html">Tentang Kami</a></li>
+              <li><a href="visi.html">Visi & Misi</a></li>
+              <li><a href="sejarah.html">Sejarah Desa</a></li>
+              <li><a href="geografis.html">Geografis</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6 class="footer-section-title">Informasi</h6>
+            <ul class="footer-links">
+              <li><a href="berita.html">Berita</a></li>
+              <li><a href="pengumuman.html">Pengumuman</a></li>
+              <li><a href="agenda.html">Agenda Kegiatan</a></li>
+              <li><a href="galeri.html">Galeri</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-lg-4 mb-4">
+            <h6 class="footer-section-title">Kontak Kami</h6>
+            <div class="footer-contact">
+              <p>
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                <span>
+                  Desa Candigugur, Kecamatan Bawang<br>
+                  Kabupaten Batang, Jawa Tengah
+                </span>
+              </p>
+              <p>
+                <i class="fas fa-phone" aria-hidden="true"></i>
+                <span>+62 285 123 456</span>
+              </p>
+              <p>
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+                <span>candigugur@batangkab.go.id</span>
+              </p>
+              <p>
+                <i class="fas fa-clock" aria-hidden="true"></i>
+                <span>Senin - Jumat: 07:00 - 16:00 WIB</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <hr class="footer-divider">
+        
+        <div class="footer-bottom row align-items-center">
+          <div class="col-md-6">
+            <p>&copy; 2025 Desa Candigugur. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <p>
+              Designed with <i class="fas fa-heart" style="color: #ef4444;" aria-hidden="true"></i> for Candigugur
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Enhanced scroll progress indicator
+      window.addEventListener("scroll", () => {
+        const scrolled =
+          (window.pageYOffset /
+            (document.documentElement.scrollHeight - window.innerHeight)) *
+          100;
+        document.getElementById("scrollProgress").style.width = scrolled + "%";
+
+        // Dynamic navbar styling
+        const navbar = document.getElementById("mainNavbar");
+        if (navbar) {
+          if (window.scrollY > 100) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        }
+      });
+
+      // Set active nav item
+      const currentPage = window.location.pathname.split("/").pop();
+      const navLinks = document.querySelectorAll(".nav-link, .dropdown-item");
+      navLinks.forEach((link) => {
+        const linkPage = link.getAttribute("href");
+        if (linkPage === currentPage) {
+          link.classList.add("active");
+        }
+      });
+
+      // Animation on scroll
+      document.addEventListener('DOMContentLoaded', function () {
+        const contentSections = document.querySelectorAll('.content-section, .story-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = 1;
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        contentSections.forEach(section => {
+          section.style.opacity = 0;
+          section.style.transform = 'translateY(20px)';
+          section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          observer.observe(section);
+        });
+      });
+    </script>
+  </body>
+</html>

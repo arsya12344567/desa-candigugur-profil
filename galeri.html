@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Galeri foto kegiatan dan potensi Desa Candigugur, Kecamatan Bawang, Kabupaten Batang">
+  <meta name="keywords" content="Desa Candigugur, Batang, galeri desa, foto kegiatan">
+  <title>Galeri - Desa Candigugur | Kabupaten Batang</title>
+  
+  <!-- Stylesheets -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  
+  <style>
+    /* CSS Variables for better maintainability - Updated to gray theme */
+    :root {
+      --primary-color: #627188;
+      --primary-dark: #52637a;
+      --primary-light: #758499;
+      --secondary-color: #64748b;
+      --text-primary: #1f2937;
+      --text-secondary: #4b5563;
+      --text-muted: #6b7280;
+      --background-light: #f8fafc;
+      --background-gray: #f1f5f9;
+      --background-card: #ffffff;
+      --white: #ffffff;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --border-light: rgba(98, 113, 136, 0.1);
+      --shadow-light: 0 4px 20px rgba(98, 113, 136, 0.08);
+      --shadow-medium: 0 8px 30px rgba(98, 113, 136, 0.12);
+      --shadow-card: 0 4px 15px rgba(0, 0, 0, 0.05);
+      --border-radius-small: 12px;
+      --border-radius-medium: 16px;
+      --border-radius-large: 24px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Base Styles */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+    }
+
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(98, 113, 136, 0.1);
+      z-index: 1000;
+    }
+
+    .scroll-progress {
+      height: 100%;
+      background: linear-gradient(135deg, #627188 0%, #52637a 100%);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Navigation Styles */
+    .navbar {
+      padding: 1rem 2rem;
+      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.95) !important;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 0.5rem 2rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    .navbar-brand img {
+      height: 48px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled .navbar-brand img {
+      height: 40px;
+    }
+
+    .brand-text {
+      margin-left: 10px;
+    }
+
+    .brand-text strong {
+      font-size: 1.2rem;
+      color: #374151;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .brand-text small {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .navbar-toggler {
+      border: none;
+      color: #374151;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2855, 65, 81, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .nav-link {
+      color: #374151 !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      padding: 8px 16px !important;
+      border-radius: 8px;
+    }
+
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #627188, #758499);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      width: 100%;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #627188 !important;
+      transform: translateY(-1px);
+      background: rgba(98, 113, 136, 0.1);
+    }
+
+    .dropdown-menu {
+      background: white;
+      border: none;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      padding: 8px 0;
+    }
+
+    .dropdown-item {
+      color: #475569;
+      font-weight: 500;
+      padding: 8px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item.active {
+      background: linear-gradient(135deg, #627188, #52637a) !important;
+      color: white !important;
+    }
+
+    .dropdown-item:hover {
+      background: #f1f5f9;
+      color: #627188;
+      transform: translateX(5px);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(135deg, #627188 0%, #52637a 100%);
+      padding: 140px 0 100px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.05"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.05"/><circle cx="10" cy="90" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      text-shadow: 0 6px 30px rgba(0,0,0,0.3);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.95);
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb-container {
+      background: var(--white);
+      border-bottom: 1px solid var(--border-light);
+      padding: 24px 0;
+    }
+
+    .breadcrumb {
+      background: transparent;
+      padding: 0;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .breadcrumb-item a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .breadcrumb-item.active {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+      padding: 100px 0;
+    }
+
+    /* Gallery Filter */
+    .gallery-filter {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+      padding: 12px 24px;
+      border-radius: 30px;
+      margin: 5px;
+      font-weight: 600;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(98, 113, 136, 0.3);
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .gallery-item {
+      background: var(--white);
+      border-radius: var(--border-radius-large);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(98, 113, 136, 0.06);
+      transition: var(--transition);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery-image {
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-image img {
+      transform: scale(1.05);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(98, 113, 136, 0.8), rgba(16, 185, 129, 0.8));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay i {
+      color: white;
+      font-size: 2rem;
+      transform: scale(0.5);
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-overlay i {
+      transform: scale(1);
+    }
+
+    .gallery-content {
+      padding: 25px;
+    }
+
+    .gallery-category {
+      background: linear-gradient(135deg, var(--accent-green) 0%, var(--secondary-color) 100%);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .gallery-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .gallery-description {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .gallery-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid var(--border-light);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Modal Styles */
+    .gallery-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      padding: 20px;
+    }
+
+    .gallery-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      background: white;
+      border-radius: var(--border-radius-large);
+      overflow: hidden;
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-image {
+      width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      background: #f8f9fa;
+    }
+
+    .modal-info {
+      padding: 25px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .modal-close:hover {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+
+    /* Enhanced Footer Styles */
+    .footer {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: #e2e8f0;
+      padding: 80px 0 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerPattern" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="30" cy="30" r="1" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23footerPattern)"/></svg>');
+      pointer-events: none;
+    }
+
+    .footer-logo {
+      width: 50px;
+      height: 50px;
+      margin-right: 15px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .footer-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .footer-title {
+      color: #ffffff;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .footer-subtitle {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .footer-description {
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      font-size: 0.95rem;
+    }
+
+    .footer-section-title {
+      color: #ffffff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(135deg, #627188 0%, #10b981 100%);
+      border-radius: 2px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      padding: 8px 0;
+      border-radius: 8px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .footer-links a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #627188 0%, #10b981 100%);
+      transform: translateY(-50%);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+      transform: translateX(10px);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .footer-links a:hover::before {
+      width: 20px;
+    }
+
+    .footer-links a[aria-current="page"] {
+      color: #10b981;
+      font-weight: 600;
+    }
+
+    .footer-contact {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .footer-contact p {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .footer-contact i {
+      color: #10b981;
+      margin-right: 15px;
+      margin-top: 2px;
+      font-size: 1.1rem;
+      min-width: 20px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, rgba(98, 113, 136, 0.8) 0%, rgba(16, 185, 129, 0.8) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-link::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.4s ease;
+    }
+
+    .social-link:hover::before {
+      width: 100%;
+      height: 100%;
+    }
+
+    .social-link:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .social-link i {
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+      margin: 50px 0 30px;
+    }
+
+    .footer-bottom {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      padding-top: 20px;
+    }
+
+    .footer-bottom p {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-bottom .fas.fa-heart {
+      color: #ef4444;
+      animation: heartbeat 2s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 50%, 100% {
+        transform: scale(1);
+      }
+      25%, 75% {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem;
+      }
+
+      .hero-section {
+        padding: 120px 0 80px;
+      }
+
+      .gallery-section {
+        padding: 80px 0;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .filter-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+
+      .footer {
+        padding: 60px 0 30px;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-section {
+        padding: 100px 0 60px;
+      }
+
+      .gallery-section {
+        padding: 60px 0;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .gallery-content {
+        padding: 20px;
+      }
+
+      .modal-content {
+        max-width: 95%;
+      }
+
+      .modal-info {
+        padding: 20px;
+      }
+    }
+
+    /* Loading States */
+    .loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="scroll-indicator">
+    <div class="scroll-progress" id="scrollProgress"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg shadow-sm sticky-top" id="mainNavbar">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="image/logo batang.png" alt="Logo Kabupaten Batang" loading="lazy">
+        <div class="brand-text">
+          <strong>Desa Candigugur</strong><br>
+          <small>Kabupaten Batang</small>
+        </div>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+        <ul class="navbar-nav gap-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Profil Desa</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="tentang.html">Tentang Kami</a></li>
+              <li><a class="dropdown-item" href="visi.html">Visi & Misi</a></li>
+              <li><a class="dropdown-item" href="sejarah.html">Sejarah Desa</a></li>
+              <li><a class="dropdown-item" href="geografis.html">Geografis Desa</a></li>
+              <li><a class="dropdown-item" href="demografis.html">Demografis Desa</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pemerintahan</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="struktur.html">Struktur</a></li>
+              <li><a class="dropdown-item" href="perangkat.html">Perangkat Desa</a></li>
+              <li><a class="dropdown-item" href="lembaga.html">Lembaga Desa</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="layanan.html">Layanan</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">Informasi</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="berita.html">Berita</a></li>
+              <li><a class="dropdown-item" href="pengumuman.html">Pengumuman</a></li>
+              <li><a class="dropdown-item" href="agenda.html">Agenda Kegiatan</a></li>
+              <li><a class="dropdown-item active" href="galeri.html">Galeri</a></li>
+              <li><a class="dropdown-item" href="apbdesa.html">APBDesa</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="potensi.html">Potensi Desa</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <h1 class="hero-title">Galeri Desa</h1>
+      <p class="hero-subtitle">Dokumentasi kegiatan dan potensi Desa Candigugur dalam gambar</p>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb-container">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="index.html">
+              <i class="fas fa-home me-1"></i>
+              Beranda
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Galeri</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="gallery-section">
+    <div class="container">
+      
+      <!-- Gallery Filter -->
+      <div class="gallery-filter">
+        <button class="filter-btn active" data-filter="all">Semua Foto</button>
+        <button class="filter-btn" data-filter="kegiatan">Kegiatan Desa</button>
+        <button class="filter-btn" data-filter="pendidikan">Pendidikan</button>
+        <button class="filter-btn" data-filter="kesehatan">Kesehatan</button>
+        <button class="filter-btn" data-filter="wisata">Wisata</button>
+        <button class="filter-btn" data-filter="ekonomi">Ekonomi</button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" id="galleryGrid">
+        
+        <!-- Pelatihan SID -->
+        <div class="gallery-item fade-in-up" data-category="kegiatan" data-image="image/rapat.png" data-title="Pelatihan Sistem Informasi Desa" data-description="Pelatihan pengembangan Sistem Informasi Desa (SID) tingkat Kabupaten Batang di Desa Candigugur" data-date="5 Februari 2025">
+          <div class="gallery-image">
+            <img src="image/rapat.png" alt="Pelatihan Sistem Informasi Desa" loading="lazy">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="gallery-content">
+            <div class="gallery-category">Kegiatan Desa</div>
+            <h3 class="gallery-title">Pelatihan Sistem Informasi Desa</h3>
+            <p class="gallery-description">Pelatihan pengembangan SID tingkat Kabupaten Batang untuk meningkatkan pelayanan publik berbasis teknologi digital.</p>
+            <div class="gallery-meta">
+              <span><i class="fas fa-calendar me-1"></i>5 Feb 2025</span>
+              <span><i class="fas fa-eye me-1"></i>320 views</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolam Renang Candi Asri -->
+        <div class="gallery-item fade-in-up" data-category="wisata" data-image="image/kolam.png" data-title="Kolam Renang Candi Asri" data-description="Destinasi wisata kolam renang dengan pemandangan alam pegunungan yang indah di Desa Candigugur" data-date="28 Januari 2025">
+          <div class="gallery-image">
+            <img src="image/kolam.png" alt="Kolam Renang Candi Asri" loading="lazy">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="gallery-content">
+            <div class="gallery-category">Wisata</div>
+            <h3 class="gallery-title">Kolam Renang Candi Asri</h3>
+            <p class="gallery-description">Destinasi wisata baru dengan pemandangan alam pegunungan yang sejuk dan indah untuk refreshing keluarga.</p>
+            <div class="gallery-meta">
+              <span><i class="fas fa-calendar me-1"></i>28 Jan 2025</span>
+              <span><i class="fas fa-eye me-1"></i>245 views</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Anti Bullying -->
+        <div class="gallery-item fade-in-up" data-category="pendidikan" data-image="image/bullying.jpg" data-title="Sosialisasi Anti Bullying" data-description="Kegiatan sosialisasi anti bullying di MI Salafiyah Candigugur oleh Tim KKN BDS Universitas Pancasakti Tegal" data-date="17 Juli 2025">
+          <div class="gallery-image">
+            <img src="image/bullying.jpg" alt="Sosialisasi Anti Bullying" loading="lazy">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="gallery-content">
+            <div class="gallery-category">Pendidikan</div>
+            <h3 class="gallery-title">Sosialisasi Anti Bullying</h3>
+            <p class="gallery-description">Program edukasi untuk memberikan pemahaman kepada siswa mengenai bahaya bullying dan nilai saling menghargai.</p>
+            <div class="gallery-meta">
+              <span><i class="fas fa-calendar me-1"></i>17 Jul 2025</span>
+              <span><i class="fas fa-eye me-1"></i>180 views</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- NIB UMKM -->
+        <div class="gallery-item fade-in-up" data-category="ekonomi" data-image="image/nib.jpg" data-title="Sosialisasi NIB UMKM" data-description="Sosialisasi dan pembuatan Nomor Induk Berusaha untuk UMKM Desa Candigugur bersama DPMPTSP Kabupaten Batang" data-date="29 Juli 2025">
+          <div class="gallery-image">
+            <img src="image/nib.jpg" alt="Sosialisasi NIB UMKM" loading="lazy">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="gallery-content">
+            <div class="gallery-category">Ekonomi</div>
+            <h3 class="gallery-title">Sosialisasi NIB UMKM</h3>
+            <p class="gallery-description">Program pendampingan legalitas usaha untuk meningkatkan daya saing UMKM di Desa Candigugur.</p>
+            <div class="gallery-meta">
+              <span><i class="fas fa-calendar me-1"></i>29 Jul 2025</span>
+              <span><i class="fas fa-eye me-1"></i>195 views</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tasyakuran HUT RI -->
+        <div class="gallery-item fade-in-up" data-category="kegiatan" data-image="image/cagur.jpg" data-title="Tasyakuran HUT RI ke-80" data-description="Warga Dukuh Candigugur bersama mahasiswa KKN menggelar tasyakuran HUT RI ke-80" data-date="19 Agustus 2025">
+          <div class="gallery-image">
+            <img src="image/cagur.jpg" alt="Tasyakuran HUT RI ke-80" loading="lazy">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="gallery-content">
+            <div class="gallery-category">Kegiatan Desa</div>
+            <h3 class="gallery-title">Tasyakuran HUT RI ke-80</h3>
+            <p class="gallery-description">Acara mempererat kebersamaan, menumbuhkan rasa syukur, dan meneguhkan semangat persatuan warga.</p>
+            <div class="gallery-meta">
+              <span><i class="fas fa-calendar me-1"></i>19 Agu 2025</span>
+              <span><i class="fas fa-eye me-1"></i>275 views</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Posyandu -->
+        <div class="gallery-item fade-in-up" data-category="kesehatan" data-image="image/posyandu.JPG" data-title="Posyandu Balita dan Lansia" data-description="Kegiatan Posyandu Balita dan Lansia bulan Agustus bersama mahasiswa KKN dan kader posyandu" data-date="10 Agustus 2025">
+          <div class="gallery-image">
+            <img src="image/posyandu.JPG" alt="Posyandu Balita dan Lansia" loading="lazy">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="gallery-content">
+            <div class="gallery-category">Kesehatan</div>
+            <h3 class="gallery-title">Posyandu Balita dan Lansia</h3>
+            <p class="gallery-description">Program kesehatan rutin untuk meningkatkan kesejahteraan balita dan lansia di Dukuh Candigugur.</p>
+            <div class="gallery-meta">
+              <span><i class="fas fa-calendar me-1"></i>10 Agu 2025</span>
+              <span><i class="fas fa-eye me-1"></i>150 views</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Budidaya Hortikultura -->
+        <div class="gallery-item fade-in-up" data-category="ekonomi" data-image="image/kebun.JPG" data-title="Budidaya Tanaman Hortikultura" data-description="Kegiatan budidaya tanaman hortikultura oleh petani desa untuk meningkatkan kesejahteraan ekonomi keluarga" data-date="15 Agustus 2025">
+          <div class="gallery-image">
+            <img src="image/kebun.JPG" alt="Budidaya Tanaman Hortikultura" loading="lazy">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="gallery-content">
+            <div class="gallery-category">Ekonomi</div>
+            <h3 class="gallery-title">Budidaya Tanaman Hortikultura</h3>
+            <p class="gallery-description">Program diversifikasi pertanian untuk pengembangan ekonomi desa yang berkelanjutan.</p>
+            <div class="gallery-meta">
+              <span><i class="fas fa-calendar me-1"></i>15 Agu 2025</span>
+              <span><i class="fas fa-eye me-1"></i>210 views</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Gallery Modal -->
+  <div class="gallery-modal" id="galleryModal">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-content">
+      <img class="modal-image" id="modalImage" src="" alt="">
+      <div class="modal-info">
+        <h4 id="modalTitle"></h4>
+        <p id="modalDescription"></p>
+        <div class="gallery-meta">
+          <span id="modalDate"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="d-flex align-items-center mb-3">
+            <img src="image/logo batang.png" alt="Logo Kabupaten Batang" class="footer-logo" loading="lazy">
+            <div>
+              <h5 class="footer-title">Desa Candigugur</h5>
+              <small class="footer-subtitle">Kabupaten Batang</small>
+            </div>
+          </div>
+          <p class="footer-description">
+            Desa Candigugur adalah desa yang terletak di Kecamatan Bawang, Kabupaten Batang, 
+            Jawa Tengah dengan potensi alam dan budaya yang kaya.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook Desa Candigugur">
+              <i class="fab fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram Desa Candigugur">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube Desa Candigugur">
+              <i class="fab fa-youtube" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="WhatsApp Desa Candigugur">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="col-lg-2 col-md-6 mb-4">
+          <h6 class="footer-section-title">Profil Desa</h6>
+          <ul class="footer-links">
+            <li><a href="tentang.html">Tentang Kami</a></li>
+            <li><a href="visi.html">Visi & Misi</a></li>
+            <li><a href="sejarah.html">Sejarah Desa</a></li>
+            <li><a href="geografis.html">Geografis</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-2 col-md-6 mb-4">
+          <h6 class="footer-section-title">Informasi</h6>
+          <ul class="footer-links">
+            <li><a href="berita.html">Berita</a></li>
+            <li><a href="pengumuman.html">Pengumuman</a></li>
+            <li><a href="agenda.html">Agenda Kegiatan</a></li>
+            <li><a href="galeri.html" aria-current="page">Galeri</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <h6 class="footer-section-title">Kontak Kami</h6>
+          <div class="footer-contact">
+            <p>
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+              <span>
+                Desa Candigugur, Kecamatan Bawang<br>
+                Kabupaten Batang, Jawa Tengah
+              </span>
+            </p>
+            <p>
+              <i class="fas fa-phone" aria-hidden="true"></i>
+              <span>+62 285 123 456</span>
+            </p>
+            <p>
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <span>candigugur@batangkab.go.id</span>
+            </p>
+            <p>
+              <i class="fas fa-clock" aria-hidden="true"></i>
+              <span>Senin - Jumat: 07:00 - 16:00 WIB</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <hr style="border-color: rgba(255,255,255,0.2); margin: 40px 0 20px;">
+      
+      <div class="footer-bottom row align-items-center">
+        <div class="col-md-6">
+          <p>© 2025 Desa Candigugur. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p>
+            Designed with <i class="fas fa-heart" style="color: #ef4444;" aria-hidden="true"></i> for Candigugur
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Gallery functionality
+    class GalleryManager {
+      constructor() {
+        this.currentFilter = 'all';
+        this.modal = document.getElementById('galleryModal');
+        this.init();
+      }
+
+      init() {
+        this.setupNavbarEffects();
+        this.setupFilterButtons();
+        this.setupGalleryItems();
+        this.setupModal();
+        this.setupScrollProgress();
+        this.setupAnimationObserver();
+        this.setupAccessibility();
+      }
+
+      // Navbar scroll effects
+      setupNavbarEffects() {
+        const navbar = document.querySelector('.navbar');
+        let isScrolled = false;
+        
+        const handleScroll = () => {
+          const shouldBeScrolled = window.scrollY > 100;
+          if (shouldBeScrolled !== isScrolled) {
+            isScrolled = shouldBeScrolled;
+            navbar.classList.toggle('scrolled', isScrolled);
+          }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+      }
+
+      // Filter buttons functionality
+      setupFilterButtons() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            // Update active button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Filter gallery items
+            const filter = btn.getAttribute('data-filter');
+            this.filterGallery(filter);
+          });
+        });
+      }
+
+      // Filter gallery items
+      filterGallery(filter) {
+        const items = document.querySelectorAll('.gallery-item');
+        
+        items.forEach(item => {
+          const category = item.getAttribute('data-category');
+          const shouldShow = filter === 'all' || category === filter;
+          
+          if (shouldShow) {
+            item.style.display = 'block';
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+            }, 100);
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              item.style.display = 'none';
+            }, 300);
+          }
+        });
+      }
+
+      // Gallery items click events
+      setupGalleryItems() {
+        const items = document.querySelectorAll('.gallery-item');
+        
+        items.forEach(item => {
+          item.addEventListener('click', () => {
+            this.openModal(item);
+          });
+
+          // Keyboard navigation
+          item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              this.openModal(item);
+            }
+          });
+
+          // Make focusable
+          item.setAttribute('tabindex', '0');
+          item.setAttribute('role', 'button');
+        });
+      }
+
+      // Modal functionality
+      setupModal() {
+        // Close modal on background click
+        this.modal.addEventListener('click', (e) => {
+          if (e.target === this.modal) {
+            this.closeModal();
+          }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+            this.closeModal();
+          }
+        });
+      }
+
+      // Open modal with image details
+      openModal(item) {
+        const image = item.getAttribute('data-image');
+        const title = item.getAttribute('data-title');
+        const description = item.getAttribute('data-description');
+        const date = item.getAttribute('data-date');
+
+        document.getElementById('modalImage').src = image;
+        document.getElementById('modalImage').alt = title;
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalDescription').textContent = description;
+        document.getElementById('modalDate').innerHTML = `<i class="fas fa-calendar me-1"></i>${date}`;
+
+        this.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Focus trap
+        const modalContent = this.modal.querySelector('.modal-content');
+        modalContent.focus();
+      }
+
+      // Close modal
+      closeModal() {
+        this.modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      // Scroll progress bar
+      setupScrollProgress() {
+        window.addEventListener('scroll', () => {
+          const scrolled = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+          document.getElementById('scrollProgress').style.width = scrolled + '%';
+        }, { passive: true });
+      }
+
+      // Animation observer for gallery items
+      setupAnimationObserver() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        // Apply to gallery items
+        const items = document.querySelectorAll('.gallery-item');
+        items.forEach((item, index) => {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(30px)';
+          item.style.transition = `all 0.6s ease ${index * 0.1}s`;
+          observer.observe(item);
+        });
+      }
+
+      // Accessibility enhancements
+      setupAccessibility() {
+        // Add aria-labels to gallery items
+        const items = document.querySelectorAll('.gallery-item');
+        items.forEach(item => {
+          const title = item.getAttribute('data-title');
+          if (title) {
+            item.setAttribute('aria-label', `Lihat gambar: ${title}`);
+          }
+        });
+
+        // Announce page load to screen readers
+        const announcement = document.createElement('div');
+        announcement.setAttribute('aria-live', 'polite');
+        announcement.style.cssText = `
+          position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;
+        `;
+        announcement.textContent = 'Halaman galeri telah dimuat';
+        document.body.appendChild(announcement);
+        
+        setTimeout(() => document.body.removeChild(announcement), 1000);
+      }
+    }
+
+    // Global functions for modal
+    function closeModal() {
+      const modal = document.getElementById('galleryModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      new GalleryManager();
+    });
+
+    // Set active nav item
+    const currentPage = window.location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll(".nav-link, .dropdown-item");
+    navLinks.forEach((link) => {
+      const linkPage = link.getAttribute("href");
+      if (linkPage === currentPage) {
+        link.classList.add("active");
+      }
+    });
+  </script>
+</body>
+</html>
